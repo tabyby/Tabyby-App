@@ -61,7 +61,7 @@ export default function LoginScreen3({navigation}) {
           <TextInput
             style={styles.input}
             placeholder='Email'
-            placeholderTextColor='#f1f2f6'
+            placeholderTextColor='#7F7F7F'
             keyboardType='email-address'
             textContentType='emailAddress'
             // autoCapitalize={false}
@@ -80,7 +80,7 @@ export default function LoginScreen3({navigation}) {
           <TextInput
             style={styles.input}
             placeholder='Password'
-            placeholderTextColor='#f1f2f6'
+            placeholderTextColor='#7F7F7F'
             secureTextEntry={!showLoginPassword}
             textContentType='password'
             returnKeyType='done'
@@ -108,13 +108,13 @@ export default function LoginScreen3({navigation}) {
         </TouchableOpacity>
         <View style={styles.socialLoginView}>
           <TouchableOpacity style={styles.socialLoginTouchable}>
-            <Icon name='google' type='font-awesome' color='#F16529' />
+            <Icon name='google' type='font-awesome' color='#26619c' />
           </TouchableOpacity>
           <TouchableOpacity style={styles.socialLoginTouchable}>
-            <Icon name='facebook' type='font-awesome' color='#F16529' />
+            <Icon name='facebook' type='font-awesome' color='#26619c' />
           </TouchableOpacity>
           <TouchableOpacity style={styles.socialLoginTouchable}>
-            <Icon name='apple' type='font-awesome' color='#F16529' />
+            <Icon name='apple' type='font-awesome' color='#26619c' />
           </TouchableOpacity>
         </View>
       </View>
@@ -136,7 +136,7 @@ export default function LoginScreen3({navigation}) {
           <TextInput
             style={styles.input}
             placeholder='Full Name'
-            placeholderTextColor='#f1f2f6'
+            placeholderTextColor='#7F7F7F'
             textContentType='name'
             autoCompleteType='name'
             returnKeyType='next'
@@ -153,7 +153,7 @@ export default function LoginScreen3({navigation}) {
           <TextInput
             style={styles.input}
             placeholder='Email'
-            placeholderTextColor='#f1f2f6'
+            placeholderTextColor='#7F7F7F'
             keyboardType='email-address'
             textContentType='emailAddress'
             autoCapitalize={false}
@@ -172,7 +172,7 @@ export default function LoginScreen3({navigation}) {
           <TextInput
             style={styles.input}
             placeholder='Phone'
-            placeholderTextColor='#f1f2f6'
+            placeholderTextColor='#7F7F7F'
             keyboardType='phone-pad'
             returnKeyType='next'
           />
@@ -188,7 +188,7 @@ export default function LoginScreen3({navigation}) {
           <TextInput
             style={styles.input}
             placeholder='Password'
-            placeholderTextColor='#f1f2f6'
+            placeholderTextColor='#7F7F7F'
             secureTextEntry={!showRegisterPassword}
             textContentType='password'
             returnKeyType='done'
