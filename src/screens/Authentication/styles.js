@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
       fontSize: 40,
       fontFamily: 'NSLight',
       marginTop: 10,
-      color: '#74b',
+      color: '#26619c',
     },
     switchTabsView: {
       display: 'flex',
@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     switchText: {
       padding: 2,
       fontSize: 20,
-      color: '#fff',
+      color: '#74b3ce',
       fontFamily: 'NSExtraBold',
     },
     inputView: {
@@ -57,12 +57,12 @@ const styles = StyleSheet.create({
       shadowRadius: 3.84,
       elevation: 5,
     },
-    buttonText: { fontFamily: 'NSRegular', fontSize: 16, color: '#E44D26' },
+    buttonText: { fontFamily: 'NSRegular', fontSize: 16, color: '#26619c' },
     forgotPasswordText: {
-      marginHorizontal: 20,
+      marginHorizontal: 0,
       marginTop: 20,
       alignSelf: 'flex-end',
-      color: '#fff',
+      color: '#26619c',
       fontSize: 18,
       fontFamily: 'NSBold',
     },
