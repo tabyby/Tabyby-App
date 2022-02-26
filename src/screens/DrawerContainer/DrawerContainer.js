@@ -35,7 +35,7 @@ export default function DrawerContainer(props) {
         />
         <MenuButton
           title="Profile"
-          source={require("../../../assets/icons/search.png")}
+          source={require("../../../assets/icons/profile.png")}
           onPress={() => {
             navigation.navigate("Profile");
             navigation.closeDrawer();
