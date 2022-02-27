@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styles from './styles'
+import axios from 'axios';
 import {
   StyleSheet,
   Text,
@@ -26,9 +27,25 @@ export default function LoginScreen3({navigation}) {
     NSBold,
     NSExtraBold,
   });
+  ///////// for users signup
+  const [username,setusername] = useState("")
+    const [email,setemail] = useState("")
+    const [password,setpassword] = useState("")
+    const [phoneNumber,setphoneNumber] = useState("")
+  const pressSignup=()=>{
+    axios.post("http://192.168.22.168:3000/user/signup",{username:username,email:email,password:password,phoneNumber:phoneNumber})
+          .then(result=>{
+              navigation.navigate('Home')
+            
+            }).catch(err=>{
+              console.log(err,"sfqd");
+            })
+    
+  }
   const presslogin=()=>{
     navigation.navigate('Home')
   }
+  
 
   const [activeTab, setActiveTab] = useState('Login');
 
@@ -64,7 +81,6 @@ export default function LoginScreen3({navigation}) {
             placeholderTextColor='#f1f2f6'
             keyboardType='email-address'
             textContentType='emailAddress'
-            // autoCapitalize={false}
             autoCompleteType='email'
             returnKeyType='next'
           />
@@ -135,13 +151,18 @@ export default function LoginScreen3({navigation}) {
           />
           <TextInput
             style={styles.input}
-            placeholder='Full Name'
+            placeholder='username'
             placeholderTextColor='#f1f2f6'
             textContentType='name'
             autoCompleteType='name'
             returnKeyType='next'
+            name="username"
+            onChangeText={newusername => setusername(newusername)}
+            defaultValue={username}
           />
         </View>
+
+        
         <View style={styles.inputView}>
           <Icon
             style={{ paddingHorizontal: 4, width: 30 }}
@@ -156,9 +177,12 @@ export default function LoginScreen3({navigation}) {
             placeholderTextColor='#f1f2f6'
             keyboardType='email-address'
             textContentType='emailAddress'
-            autoCapitalize={false}
             autoCompleteType='email'
             returnKeyType='next'
+            name="email"
+            onChangeText={newemail => setemail(newemail)}
+            defaultValue={email}
+          
           />
         </View>
         <View style={styles.inputView}>
@@ -174,9 +198,14 @@ export default function LoginScreen3({navigation}) {
             placeholder='Phone'
             placeholderTextColor='#f1f2f6'
             keyboardType='phone-pad'
-            returnKeyType='next'
+            returnKeyType='next' 
+            name="phoneNumber"
+            onChangeText={phoneNumber => setphoneNumber(phoneNumber)}
+            defaultValue={phoneNumber}
+            
           />
         </View>
+          
         <View style={styles.inputView}>
           <Icon
             style={{ paddingHorizontal: 4, width: 30 }}
@@ -192,6 +221,10 @@ export default function LoginScreen3({navigation}) {
             secureTextEntry={!showRegisterPassword}
             textContentType='password'
             returnKeyType='done'
+            name="password"
+            onChangeText={newpassword => setpassword(newpassword)}
+            defaultValue={password}
+            
           />
           <TouchableOpacity
             style={{ paddingVertical: 4 }}
@@ -206,10 +239,11 @@ export default function LoginScreen3({navigation}) {
               color='#74b3ce'
               size={22}
             />
+            
           </TouchableOpacity>
         </View>
         <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Register</Text>
+          <Text style={styles.buttonText} onPress={pressSignup}>Register</Text>
         </TouchableOpacity>
         <View>
           <Text
