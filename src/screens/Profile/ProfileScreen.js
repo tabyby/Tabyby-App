@@ -159,13 +159,13 @@ export default function ProfileScreen1() {
                 <Image
                   style={styles.profileImage}
                   source={{
-                    uri: 'https://randomuser.me/api/portraits/women/46.jpg',
+                    uri: 'https://scontent.ftun4-1.fna.fbcdn.net/v/t1.6435-9/80772247_2462935760593775_8383374698313940992_n.jpg?_nc_cat=107&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=TixX3ght1xIAX_1m9iQ&_nc_ht=scontent.ftun4-1.fna&oh=00_AT-wJmdsHdm8YRcjDqQSFjH15RgTInJAoaSCmv9aebrwGw&oe=6240EE13',
                   }}
                 />
               </View>
               {/* Profile Name and Bio */}
               <View style={styles.nameAndBioView}>
-                <Text style={styles.userFullName}>{'Sophie Welch'}</Text>
+                <Text style={styles.userFullName}>{'Oussema hmaied'}</Text>
                 
               </View>
              
