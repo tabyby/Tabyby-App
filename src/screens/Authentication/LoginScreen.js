@@ -28,42 +28,9 @@ export default function LoginScreen3({navigation}) {
     NSBold,
     NSExtraBold,
   });
-  ///////// for users signup
-  // const [username,setusername] = useState(null)
-  //   const [email,setemail] = useState(null)
-  //   const [password,setpassword] = useState(null)
-  //   const [phoneNumber,setphoneNumber] = useState(null)
-    var username=""
-    var email=""
-    var password=""
-    var phoneNumber=""
-    const IP = "http://192.168.22.168:3000"
-  const pressSignup=()=>{
-    // axios.post(`${IP}/user//usersignup`,{username:username,email:email,password:password,phoneNumber:phoneNumber})
-    //       .then(result=>{
-    //         console.log(result
-    //           );
-              navigation.navigate('Home')
-            
-            // }).catch(err=>{
-            //   console.log(err,"sfqd");
-            // })
-    
-  }
+  
  
-  const presslogin=()=>{
-//     axios.post(`${IP}/user/signup`,{username:username,email:email,password:password,phoneNumber:phoneNumber})
-//     .then(result=>{
-//       console.log(result
-//         );
-        navigation.navigate('Home')
-      
-//       }).catch(err=>{
-//         console.log(err,"sfqd");
-//         alert("ekteb mot de  passe ya stal")
-//       })
-
-}
+ 
   
   
 
@@ -81,10 +48,35 @@ export default function LoginScreen3({navigation}) {
     }
   }
   
- function Login(props) {
+ function Login() {
     const [showLoginPassword, setShowLoginPassword] = useState(false);
+    const[inputs,setInputs]=React.useState({
+      
+      email:"",
+      password:"",
    
-
+    })
+    const  handleonChange=(text,input)=>{
+      setInputs(prevState=>({...prevState,[input]:text}))
+    }
+    
+    const IP = "http://192.168.22.168:3000"
+   
+    const presslogin=()=>{
+      
+          axios.post(`${IP}/user/userlogin`,{email:inputs.email,password:inputs.password})
+          .then(result=>{
+            console.log(result
+              );
+                navigation.navigate('Home')
+              
+            
+            }).catch(err=>{
+              console.log(err,"sfqd");
+              alert("ekteb mot de  passe ya stal")
+            })
+      
+      }
     return (
       <View style={{ marginTop: 10 }}>
         <View style={styles.inputView}>
@@ -103,6 +95,7 @@ export default function LoginScreen3({navigation}) {
             textContentType='emailAddress'
             autoCompleteType='email'
             // returnKeyType='next'
+            onChangeText={(text)=>handleonChange(text,"email")}
           />
         </View>
         <View style={styles.inputView}>
@@ -120,6 +113,7 @@ export default function LoginScreen3({navigation}) {
             secureTextEntry={!showLoginPassword}
             textContentType='password'
             returnKeyType='done'
+            onChangeText={(text)=>handleonChange(text,"password")}
           />
           <TouchableOpacity
             style={{ paddingVertical: 4 }}
@@ -159,6 +153,31 @@ export default function LoginScreen3({navigation}) {
 
   function Register() {
     const [showRegisterPassword, setShowRegisterPassword] = useState(false);
+   
+  const[inputs,setInputs]=React.useState({
+    userName:"",
+    email:"",
+    password:"",
+  phoneNumber:""
+  })
+  const  handleonChange=(text,input)=>{
+    setInputs(prevState=>({...prevState,[input]:text}))
+  }
+  
+  const IP = "http://192.168.22.168:3000"
+var pressSignup=()=>{
+  axios.post(`${IP}/user/usersignup`,{userName:inputs.userName,email:inputs.email,password:inputs.password,phoneNumber:inputs.phoneNumber})
+        .then(result=>{
+          console.log(result
+            );
+            navigation.navigate('Home')
+          
+          }).catch(err=>{
+            console.log(err,"sfqd");
+            alert("erreur")
+          })
+  
+}
     return (
       <View style={{ marginTop: 10 }}>
         <View style={styles.inputView}>
@@ -174,9 +193,9 @@ export default function LoginScreen3({navigation}) {
             placeholder='username'
             placeholderTextColor='#f1f2f6'
              autoCompleteType='name'
-            name="username"
-            onChangeText={username}
-            // value={username}
+            name="userName"
+            onChangeText={(text)=>handleonChange(text,"userName")}
+            
           />
         </View>
 
@@ -198,8 +217,8 @@ export default function LoginScreen3({navigation}) {
             autoCompleteType='email'
             // returnKeyType='next'
             name="email"
-            onChangeText={email}
-            // value={email}
+            onChangeText={(text)=>handleonChange(text,"email")}
+            
           
           />
         </View>
@@ -218,8 +237,8 @@ export default function LoginScreen3({navigation}) {
             keyboardType='phone-pad'
             // returnKeyType='next' 
             name="phoneNumber"
-            onChangeText={phoneNumber}
-            // value={phoneNumber}
+            onChangeText={(text)=>handleonChange(text,"phoneNumber")}
+           
             
           />
         </View>
@@ -240,8 +259,8 @@ export default function LoginScreen3({navigation}) {
             textContentType='password'
             returnKeyType='done'
             name="password"
-            onChangeText={password}
-            // value={password}
+            onChangeText={(text)=>handleonChange(text,"password")}
+           
 
             
           />
@@ -262,7 +281,7 @@ export default function LoginScreen3({navigation}) {
           </TouchableOpacity>
         </View>
         <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}  onPress={pressSignup}>Register</Text>
+          <Text style={styles.buttonText}   onPress={pressSignup}>Register</Text>
         </TouchableOpacity>
         <View>
           <Text
