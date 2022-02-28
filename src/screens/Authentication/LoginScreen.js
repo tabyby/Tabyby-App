@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './styles'
+import axios from 'axios';
+import { ActivityIndicator } from 'react-native';
 import {
   StyleSheet,
   Text,
@@ -26,9 +28,44 @@ export default function LoginScreen3({navigation}) {
     NSBold,
     NSExtraBold,
   });
-  const presslogin=()=>{
-    navigation.navigate('Home')
+  ///////// for users signup
+  // const [username,setusername] = useState(null)
+  //   const [email,setemail] = useState(null)
+  //   const [password,setpassword] = useState(null)
+  //   const [phoneNumber,setphoneNumber] = useState(null)
+    var username=""
+    var email=""
+    var password=""
+    var phoneNumber=""
+    const IP = "http://192.168.22.168:3000"
+  const pressSignup=()=>{
+    // axios.post(`${IP}/user//usersignup`,{username:username,email:email,password:password,phoneNumber:phoneNumber})
+    //       .then(result=>{
+    //         console.log(result
+    //           );
+              navigation.navigate('Home')
+            
+            // }).catch(err=>{
+            //   console.log(err,"sfqd");
+            // })
+    
   }
+ 
+  const presslogin=()=>{
+//     axios.post(`${IP}/user/signup`,{username:username,email:email,password:password,phoneNumber:phoneNumber})
+//     .then(result=>{
+//       console.log(result
+//         );
+        navigation.navigate('Home')
+      
+//       }).catch(err=>{
+//         console.log(err,"sfqd");
+//         alert("ekteb mot de  passe ya stal")
+//       })
+
+}
+  
+  
 
   const [activeTab, setActiveTab] = useState('Login');
 
@@ -61,12 +98,11 @@ export default function LoginScreen3({navigation}) {
           <TextInput
             style={styles.input}
             placeholder='Email'
-            placeholderTextColor='#f1f2f6'
+            placeholderTextColor='#7F7F7F'
             keyboardType='email-address'
             textContentType='emailAddress'
-            // autoCapitalize={false}
             autoCompleteType='email'
-            returnKeyType='next'
+            // returnKeyType='next'
           />
         </View>
         <View style={styles.inputView}>
@@ -80,7 +116,7 @@ export default function LoginScreen3({navigation}) {
           <TextInput
             style={styles.input}
             placeholder='Password'
-            placeholderTextColor='#f1f2f6'
+            placeholderTextColor='#7F7F7F'
             secureTextEntry={!showLoginPassword}
             textContentType='password'
             returnKeyType='done'
@@ -101,20 +137,20 @@ export default function LoginScreen3({navigation}) {
           </TouchableOpacity>
         </View>
         <TouchableOpacity style={styles.button}  >
-          <Text style={styles.buttonText} onPress={presslogin}>Login</Text>
+          <Text style={styles.buttonText} onPress={presslogin} >Login</Text>
         </TouchableOpacity>
         <TouchableOpacity>
           <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
         </TouchableOpacity>
         <View style={styles.socialLoginView}>
           <TouchableOpacity style={styles.socialLoginTouchable}>
-            <Icon name='google' type='font-awesome' color='#F16529' />
+            <Icon name='google' type='font-awesome' color='#26619c' />
           </TouchableOpacity>
           <TouchableOpacity style={styles.socialLoginTouchable}>
-            <Icon name='facebook' type='font-awesome' color='#F16529' />
+            <Icon name='facebook' type='font-awesome' color='#26619c' />
           </TouchableOpacity>
           <TouchableOpacity style={styles.socialLoginTouchable}>
-            <Icon name='apple' type='font-awesome' color='#F16529' />
+            <Icon name='apple' type='font-awesome' color='#26619c' />
           </TouchableOpacity>
         </View>
       </View>
@@ -135,13 +171,16 @@ export default function LoginScreen3({navigation}) {
           />
           <TextInput
             style={styles.input}
-            placeholder='Full Name'
+            placeholder='username'
             placeholderTextColor='#f1f2f6'
-            textContentType='name'
-            autoCompleteType='name'
-            returnKeyType='next'
+             autoCompleteType='name'
+            name="username"
+            onChangeText={username}
+            // value={username}
           />
         </View>
+
+        
         <View style={styles.inputView}>
           <Icon
             style={{ paddingHorizontal: 4, width: 30 }}
@@ -153,12 +192,15 @@ export default function LoginScreen3({navigation}) {
           <TextInput
             style={styles.input}
             placeholder='Email'
-            placeholderTextColor='#f1f2f6'
+            placeholderTextColor='#7F7F7F'
             keyboardType='email-address'
             textContentType='emailAddress'
-            autoCapitalize={false}
             autoCompleteType='email'
-            returnKeyType='next'
+            // returnKeyType='next'
+            name="email"
+            onChangeText={email}
+            // value={email}
+          
           />
         </View>
         <View style={styles.inputView}>
@@ -172,11 +214,16 @@ export default function LoginScreen3({navigation}) {
           <TextInput
             style={styles.input}
             placeholder='Phone'
-            placeholderTextColor='#f1f2f6'
+            placeholderTextColor='#7F7F7F'
             keyboardType='phone-pad'
-            returnKeyType='next'
+            // returnKeyType='next' 
+            name="phoneNumber"
+            onChangeText={phoneNumber}
+            // value={phoneNumber}
+            
           />
         </View>
+          
         <View style={styles.inputView}>
           <Icon
             style={{ paddingHorizontal: 4, width: 30 }}
@@ -188,10 +235,15 @@ export default function LoginScreen3({navigation}) {
           <TextInput
             style={styles.input}
             placeholder='Password'
-            placeholderTextColor='#f1f2f6'
+            placeholderTextColor='#7F7F7F'
             secureTextEntry={!showRegisterPassword}
             textContentType='password'
             returnKeyType='done'
+            name="password"
+            onChangeText={password}
+            // value={password}
+
+            
           />
           <TouchableOpacity
             style={{ paddingVertical: 4 }}
@@ -206,10 +258,11 @@ export default function LoginScreen3({navigation}) {
               color='#74b3ce'
               size={22}
             />
+            
           </TouchableOpacity>
         </View>
         <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Register</Text>
+          <Text style={styles.buttonText}  onPress={pressSignup}>Register</Text>
         </TouchableOpacity>
         <View>
           <Text
@@ -249,6 +302,7 @@ export default function LoginScreen3({navigation}) {
   if (!loaded) {
     return (
       <View>
+        <ActivityIndicator size="large" color='#2ed573'/>
         <Text>Loading...</Text>
       </View>
     );
