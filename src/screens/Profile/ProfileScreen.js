@@ -23,7 +23,7 @@ function Photos({ photos }) {
   const imgWidth = Dimensions.get('screen').width * 0.33333;
   return (
     <View style={{}}>
-      {/* <View
+      <View
         style={{
           flexDirection: 'row',
           flexWrap: 'wrap',
@@ -40,7 +40,7 @@ function Photos({ photos }) {
             />
           </View>
         ))}
-      </View> */}
+      </View>
     </View>
   );
 }
