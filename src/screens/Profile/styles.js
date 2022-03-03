@@ -63,5 +63,8 @@ const styles = StyleSheet.create({
       fontFamily: 'SSRegular',
       fontSize: 18,
     },
+    
   });
+
+ 
   export default styles;
