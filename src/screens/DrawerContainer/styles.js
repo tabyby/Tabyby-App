@@ -5,12 +5,16 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    
+  
   },
   container: {
     flex: 1,
-    alignItems: 'flex-start',
-    paddingHorizontal: 20
+    alignItems: 'center',
+    paddingHorizontal: 10,
+    
+    
   }
 });
 
