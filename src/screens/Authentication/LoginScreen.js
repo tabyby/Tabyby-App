@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './styles'
+import axios from 'axios';
+import { ActivityIndicator } from 'react-native';
 import {
   StyleSheet,
   Text,
@@ -26,9 +28,11 @@ export default function LoginScreen3({navigation}) {
     NSBold,
     NSExtraBold,
   });
-  const presslogin=()=>{
-    navigation.navigate('Home')
-  }
+  
+ 
+ 
+  
+  
 
   const [activeTab, setActiveTab] = useState('Login');
 
@@ -44,10 +48,35 @@ export default function LoginScreen3({navigation}) {
     }
   }
   
- function Login(props) {
+ function Login() {
     const [showLoginPassword, setShowLoginPassword] = useState(false);
+    const[inputs,setInputs]=React.useState({
+      
+      email:"",
+      password:"",
    
-
+    })
+    const  handleonChange=(text,input)=>{
+      setInputs(prevState=>({...prevState,[input]:text}))
+    }
+    
+    const IP = "http://192.168.22.253:3000"
+   
+    const presslogin=()=>{
+      
+          axios.post(`${IP}/user/userlogin`,{email:inputs.email,password:inputs.password})
+          .then(result=>{
+            console.log(result
+              );
+                navigation.navigate('Home')
+              
+            
+            }).catch(err=>{
+              console.log(err,"sfqd");
+              alert("ekteb mot de  passe ya stal")
+            })
+      
+      }
     return (
       <View style={{ marginTop: 10 }}>
         <View style={styles.inputView}>
@@ -64,9 +93,9 @@ export default function LoginScreen3({navigation}) {
             placeholderTextColor='#7F7F7F'
             keyboardType='email-address'
             textContentType='emailAddress'
-            // autoCapitalize={false}
             autoCompleteType='email'
-            returnKeyType='next'
+            // returnKeyType='next'
+            onChangeText={(text)=>handleonChange(text,"email")}
           />
         </View>
         <View style={styles.inputView}>
@@ -84,6 +113,7 @@ export default function LoginScreen3({navigation}) {
             secureTextEntry={!showLoginPassword}
             textContentType='password'
             returnKeyType='done'
+            onChangeText={(text)=>handleonChange(text,"password")}
           />
           <TouchableOpacity
             style={{ paddingVertical: 4 }}
@@ -101,7 +131,7 @@ export default function LoginScreen3({navigation}) {
           </TouchableOpacity>
         </View>
         <TouchableOpacity style={styles.button}  >
-          <Text style={styles.buttonText} onPress={presslogin}>Login</Text>
+          <Text style={styles.buttonText} onPress={presslogin} >Login</Text>
         </TouchableOpacity>
         <TouchableOpacity>
           <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
@@ -123,6 +153,31 @@ export default function LoginScreen3({navigation}) {
 
   function Register() {
     const [showRegisterPassword, setShowRegisterPassword] = useState(false);
+   
+  const[inputs,setInputs]=React.useState({
+    userName:"",
+    email:"",
+    password:"",
+  phoneNumber:""
+  })
+  const  handleonChange=(text,input)=>{
+    setInputs(prevState=>({...prevState,[input]:text}))
+  }
+  
+  const IP = "http://192.168.22.253:3000"
+var pressSignup=()=>{
+  axios.post(`${IP}/user/usersignup`,{userName:inputs.userName,email:inputs.email,password:inputs.password,phoneNumber:inputs.phoneNumber})
+        .then(result=>{
+          console.log(result
+            );
+            navigation.navigate('Home')
+          
+          }).catch(err=>{
+            console.log(err,"sfqd");
+            alert("erreur")
+          })
+  
+}
     return (
       <View style={{ marginTop: 10 }}>
         <View style={styles.inputView}>
@@ -135,13 +190,16 @@ export default function LoginScreen3({navigation}) {
           />
           <TextInput
             style={styles.input}
-            placeholder='Full Name'
-            placeholderTextColor='#7F7F7F'
-            textContentType='name'
-            autoCompleteType='name'
-            returnKeyType='next'
+            placeholder='username'
+            placeholderTextColor='#f1f2f6'
+             autoCompleteType='name'
+            name="userName"
+            onChangeText={(text)=>handleonChange(text,"userName")}
+            
           />
         </View>
+
+        
         <View style={styles.inputView}>
           <Icon
             style={{ paddingHorizontal: 4, width: 30 }}
@@ -156,9 +214,12 @@ export default function LoginScreen3({navigation}) {
             placeholderTextColor='#7F7F7F'
             keyboardType='email-address'
             textContentType='emailAddress'
-            autoCapitalize={false}
             autoCompleteType='email'
-            returnKeyType='next'
+            // returnKeyType='next'
+            name="email"
+            onChangeText={(text)=>handleonChange(text,"email")}
+            
+          
           />
         </View>
         <View style={styles.inputView}>
@@ -174,9 +235,14 @@ export default function LoginScreen3({navigation}) {
             placeholder='Phone'
             placeholderTextColor='#7F7F7F'
             keyboardType='phone-pad'
-            returnKeyType='next'
+            // returnKeyType='next' 
+            name="phoneNumber"
+            onChangeText={(text)=>handleonChange(text,"phoneNumber")}
+           
+            
           />
         </View>
+          
         <View style={styles.inputView}>
           <Icon
             style={{ paddingHorizontal: 4, width: 30 }}
@@ -192,6 +258,11 @@ export default function LoginScreen3({navigation}) {
             secureTextEntry={!showRegisterPassword}
             textContentType='password'
             returnKeyType='done'
+            name="password"
+            onChangeText={(text)=>handleonChange(text,"password")}
+           
+
+            
           />
           <TouchableOpacity
             style={{ paddingVertical: 4 }}
@@ -206,10 +277,11 @@ export default function LoginScreen3({navigation}) {
               color='#74b3ce'
               size={22}
             />
+            
           </TouchableOpacity>
         </View>
         <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Register</Text>
+          <Text style={styles.buttonText}   onPress={pressSignup}>Register</Text>
         </TouchableOpacity>
         <View>
           <Text
@@ -249,6 +321,7 @@ export default function LoginScreen3({navigation}) {
   if (!loaded) {
     return (
       <View>
+        <ActivityIndicator size="large" color='#2ed573'/>
         <Text>Loading...</Text>
       </View>
     );
