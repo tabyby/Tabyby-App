@@ -3,12 +3,12 @@ export const categories = [
     id: 3,
     name: 'neurologist',
     photo_url:
-    'https://cdn.discordapp.com/attachments/933742466438410342/946502917156929626/brain.png'
+    'https://media.discordapp.net/attachments/935973910695002123/948962112628228167/brain.png?width=473&height=473'
   },
   {
     id: 1,
     name: 'cardiologist',
-    photo_url: 'https://cdn.discordapp.com/attachments/933742466438410342/946502918142586900/heart.png'
+    photo_url: 'https://media.discordapp.net/attachments/935973910695002123/948962113664196638/heart.png?width=473&height=473'
   },
   {
     id: 2,
@@ -20,32 +20,32 @@ export const categories = [
     id: 4,
     name: 'nephrologist',
     photo_url:
-    'https://cdn.discordapp.com/attachments/933742466438410342/946502918318727239/kidney.png'
+    'https://media.discordapp.net/attachments/935973910695002123/948962150016229407/kidney.png?width=473&height=473'
   },
   {
     id: 0,
     name: 'general preactitioner',
-    photo_url: 'https://media.discordapp.net/attachments/933742466438410342/946502917345669170/cardiology.png?width=468&height=468'
+    photo_url: 'https://media.discordapp.net/attachments/935973910695002123/948959329506177074/cardiology.png?width=473&height=473'
   },
   {
     id: 5,
     name: 'orthopedist',
-    photo_url: 'https://cdn.discordapp.com/attachments/933742466438410342/946502969531179009/orthopedics_1.png'
+    photo_url: 'https://media.discordapp.net/attachments/935973910695002123/948962150624399390/orthopedics_1.png?width=473&height=473'
   },
   {
     id: 6,
     name: 'gynecologist',
-    photo_url: 'https://cdn.discordapp.com/attachments/933742466438410342/946502970198069338/sexual-health.png'
+    photo_url: 'https://media.discordapp.net/attachments/935973910695002123/948962151069016094/sexual-health.png?width=473&height=473'
   },
   {
     id: 7,
     name: 'diabetologist',
-    photo_url: 'https://cdn.discordapp.com/attachments/933742466438410342/946502970487484456/sugar-blood-level.png'
+    photo_url: 'https://media.discordapp.net/attachments/935973910695002123/948962151496818728/sugar-blood-level.png?width=473&height=473'
   },
   {
     id: 8,
     name: 'dentist',
-    photo_url: 'https://cdn.discordapp.com/attachments/933742466438410342/946502970827218974/tooth.png'
+    photo_url: 'https://media.discordapp.net/attachments/935973910695002123/948962113215397928/dermis.png?width=473&height=473'
   },
 
   
