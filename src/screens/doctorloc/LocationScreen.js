@@ -14,16 +14,16 @@ const [country]=useState(
     
     return(
         
-<Picker 
-style={{marginVertical:10}}
-SelectedValue={{selectedCountry}}
-onValueChange={(itemVal)=>{
-    setSelectedCountry(presslogin)
+        <Picker 
+            style={{marginVertical:10}}
+            SelectedValue={{selectedCountry}}
+            onValueChange={(itemVal)=>{
+            setSelectedCountry(presslogin)
+            }}>
+            {country.map((c)=>(<Picker.Item label={c} value={c} />)) }
     
-}}   >{country.map((c)=>(<Picker.Item label={c} value={c} />)) }
-    
-</Picker>
-  
+        </Picker>
+        
     )
 
 }

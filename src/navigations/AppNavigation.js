@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { createStackNavigator } from '@react-navigation/stack'
 import { NavigationContainer } from '@react-navigation/native'
 import { createDrawerNavigator } from '@react-navigation/drawer'
@@ -15,6 +16,7 @@ import IngredientsDetailsScreen from '../screens/DoctorDetails/DoctorDetailsScre
 
 const Stack = createStackNavigator();
 
+
 function MainNavigator() {
   return (
     <Stack.Navigator
@@ -24,16 +26,19 @@ function MainNavigator() {
           textAlign: 'center',
           alignSelf: 'center',
           flex: 1,
-        }
-      }}
+        },
+        headerStyle: {
+          backgroundColor: '#BCD2E8', 
+       }
+      }
+    }
+      
     >
-
-      <Stack.Screen name='Login' component={LoginScreen} />
+      <Stack.Screen name='Login' component={LoginScreen} screenOptions={{headerShown:false}}  />
       <Stack.Screen name='Home' component={HomeScreen} />
       <Stack.Screen name='Location' component={LocationScreen} />
       <Stack.Screen name='Categories' component={CategoriesScreen} />
-      <Stack.Screen name='Recipe' component={RecipeScreen} />
-
+      <Stack.Screen name='Doctor profile' component={RecipeScreen} />
       <Stack.Screen name='Search' component={SearchScreen} />
       <Stack.Screen name='IngredientsDetails' component={IngredientsDetailsScreen} />
       <Stack.Screen name='Profile' component={ProfileScreen} />
@@ -49,7 +54,7 @@ function DrawerStack() {
       drawerPosition='left'
       initialRouteName='Main'
       drawerStyle={{
-        width: 250
+        width: 250,
       }}
       screenOptions={{ headerShown: false }}
       drawerContent={({ navigation }) => <DrawerContainer navigation={navigation} />}
