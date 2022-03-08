@@ -3,6 +3,8 @@ import { FlatList, Text, View, Image, TouchableHighlight } from "react-native";
 import styles from "./styles";
 import { getIngredientName, getAllIngredients } from "../../data/MockDataAPI";
 
+
+
 export default function IngredientsDetailsScreen(props) {
   const { navigation, route } = props;
 
@@ -17,6 +19,7 @@ export default function IngredientsDetailsScreen(props) {
       },
     });
   }, []);
+  
 
   const onPressIngredient = (item) => {
     let name = getIngredientName(item.ingredientId);
@@ -32,6 +35,7 @@ export default function IngredientsDetailsScreen(props) {
         <Text style={{ color: "grey" }}>{item[1]}</Text>
       </View>
     </TouchableHighlight>
+    
   );
 
   return (
@@ -40,3 +44,6 @@ export default function IngredientsDetailsScreen(props) {
     </View>
   );
 }
+// import {useState} from 'react'
+
+

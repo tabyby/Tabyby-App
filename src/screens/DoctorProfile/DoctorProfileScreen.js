@@ -1,10 +1,12 @@
 import React, { useLayoutEffect, useRef, useState } from "react";
-import { ScrollView, Text, View, Image, Dimensions, TouchableHighlight } from "react-native";
+import { ScrollView, Text, View, Image, Dimensions, TouchableHighlight,image } from "react-native";
 import styles from "./styles";
 import Carousel, { Pagination } from "react-native-snap-carousel";
 import { getIngredientName, getCategoryName, getCategoryById } from "../../data/MockDataAPI";
+import {doctor} from "../Categories/CategoriesScreen"
 import BackButton from "../../components/BackButton/BackButton";
 import ViewIngredientsButton from "../../components/ViewIngredientsButton/ViewIngredientsButton";
+import Calendar from '../Calender/Calender'
 
 const { width: viewportWidth } = Dimensions.get("window");
 
@@ -36,7 +38,7 @@ export default function RecipeScreen(props) {
   const renderImage = ({ item }) => (
     <TouchableHighlight>
       <View style={styles.imageContainer}>
-        <Image style={styles.image} source={{ uri: item }} />
+        <Image style={styles.image} source={{ uri: item.profilePicture }} />
       </View>
     </TouchableHighlight>
   );
@@ -51,9 +53,9 @@ export default function RecipeScreen(props) {
     <ScrollView style={styles.container}>
       <View style={styles.carouselContainer}>
         <View style={styles.carousel}>
-          <Carousel
+          {/* <Carousel
             ref={slider1Ref}
-            data={item.photosArray}
+            data={item.profilePicture}
             renderItem={renderImage}
             sliderWidth={viewportWidth}
             itemWidth={viewportWidth}
@@ -67,7 +69,7 @@ export default function RecipeScreen(props) {
             onSnapToItem={(index) => setActiveSlide(0)}
           />
           <Pagination
-            dotsLength={item.photosArray.length}
+            // dotsLength={item.photosArray.length}
             activeDotIndex={activeSlide}
             containerStyle={styles.paginationContainer}
             dotColor="rgba(255, 255, 255, 0.92)"
@@ -77,7 +79,7 @@ export default function RecipeScreen(props) {
             inactiveDotScale={0.6}
             carouselRef={slider1Ref.current}
             tappableDots={!!slider1Ref.current}
-          />
+          /> */}
         </View>
       </View>
       <View style={styles.infoRecipeContainer}>
@@ -88,10 +90,10 @@ export default function RecipeScreen(props) {
           </TouchableHighlight>
         </View>
 
-        <View style={styles.infoContainer}>
+        {/* <View style={styles.infoContainer}>
           <Image style={styles.infoPhoto} source={require("../../../assets/icons/time.png")} />
           <Text style={styles.infoRecipe}>{item.time} minutes </Text>
-        </View>
+        </View> */}
 
         <View style={styles.infoContainer}>
           <ViewIngredientsButton
@@ -105,6 +107,8 @@ export default function RecipeScreen(props) {
         <View style={styles.infoContainer}>
           <Text style={styles.infoDescriptionRecipe}>{item.description}</Text>
         </View>
+          <Text style={styles.infoDescriptionRecipe}>Choose your appointement date:</Text>
+      <Calendar />
       </View>
     </ScrollView>
   );
