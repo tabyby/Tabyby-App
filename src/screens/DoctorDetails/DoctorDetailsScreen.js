@@ -19,6 +19,7 @@ export default function IngredientsDetailsScreen(props) {
       },
     });
   }, []);
+  
 
   const onPressIngredient = (item) => {
     let name = getIngredientName(item.ingredientId);

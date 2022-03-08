@@ -1,8 +1,8 @@
 import {useState} from 'react'
-import { Picker } from 'react-native'
+import { Picker,Text,View,Button} from 'react-native'
 
 export default function Location ({navigation}){
-    const [selectedCountry,setSelectedCountry]=useState("Tunis")
+    const [selectedCountry,setSelectedCountry]=useState("tunis")
 const [country]=useState(
     [
         "Tunis","Ariana", "Ben Arous", "Manouba", "Nabeul", "Bizerte", "Beja", "Jendouba", "Kasserine", "Kef", "Seliana", "Kairouan", "Sidi Bouzid", "Gafsa", "Tozeur", "Gbelli", "Tataouine", "Medenin", "Gabes", "Sfax", "Mahdia", "Monastir", "Sousse", "Zaghouane"
@@ -21,7 +21,7 @@ const [country]=useState(
             setSelectedCountry(presslogin)
             }}>
             {country.map((c)=>(<Picker.Item label={c} value={c} />)) }
-    
+           
         </Picker>
         
     )
