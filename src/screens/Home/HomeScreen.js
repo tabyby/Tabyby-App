@@ -32,7 +32,7 @@ export default function CategoriesScreen(props) {
 
     navigation.navigate("Location");
   };
-
+  
   const renderCategory = ({ item }) => (
     <TouchableHighlight underlayColor="rgba(73,182,77,0.9)" onPress={() => onPressCategory()}>
       <View style={styles.container}>
@@ -41,22 +41,24 @@ export default function CategoriesScreen(props) {
         {/* <Text style={styles.category}>{getNumberOfRecipes(item.id)} doctors</Text> */}
       </View>
     </TouchableHighlight>
+    
   );
+ 
 
-  const renderAdds =()=>{
-    <TouchableHighlight underlayColor="rgba(73,182,77,0.9)">
-    <View style={styles.categoriesItemContainer}>
-      <Image style={styles.categoriesPhoto}  source={{ uri: item.photo_url }} />
-      <Text style={styles.categoriesName}>fddfd</Text>
-      <Text style={styles.categoriesInfo}>yoooo</Text>
-    </View>
-  </TouchableHighlight>
-  }
+  // const renderAdds =()=>{
+  //   <TouchableHighlight underlayColor="rgba(73,182,77,0.9)">
+  //   <View style={styles.categoriesItemContainer}>
+  //     <Image style={styles.categoriesPhoto}  source={{ uri: item.photo_url }} />
+  //     <Text style={styles.categoriesName}>fddfd</Text>
+  //     <Text style={styles.categoriesInfo}>yoooo</Text>
+  //   </View>
+  // </TouchableHighlight>
+  // }
 
   return (
     <ScrollView>
       <View>
-      <FlatList vertical showsVerticalScrollIndicator={false} numColumns={6} renderItem={renderAdds} />
+      {/* <FlatList vertical showsVerticalScrollIndicator={false} numColumns={6} renderItem={renderAdds} /> */}
       <FlatList vertical showsVerticalScrollIndicator={false} numColumns={6} data={categories} renderItem={renderCategory} keyExtractor={(item) => `${item.id}`} />
       </View>
       <Blogs />
