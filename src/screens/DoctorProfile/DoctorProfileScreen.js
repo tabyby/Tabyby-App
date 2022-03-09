@@ -108,8 +108,8 @@ export default function RecipeScreen(props) {
           <Text style={styles.infoDescriptionRecipe}>{item.description}</Text>
         </View>
           <Text style={styles.infoDescriptionRecipe}>Choose your appointement date:</Text>
-      <Calendar />
       </View>
+      <Calendar />
     </ScrollView>
   );
 }

@@ -13,6 +13,7 @@ import LocationScreen from '../screens/doctorloc/LocationScreen';
 import ProfileScreen from '../screens/Profile/ProfileScreen'
 
 import IngredientsDetailsScreen from '../screens/DoctorDetails/DoctorDetailsScreen';
+import Calender from '../screens/Calender/Calender'
 
 const Stack = createStackNavigator();
 
@@ -26,26 +27,25 @@ function MainNavigator() {
           textAlign: 'center',
           alignSelf: 'center',
           flex: 1,
-          
         },
         headerStyle: {
           backgroundColor: '#BCD2E8', 
-       },
-      
+       }
       }
     }
       
     >
-      {/* <Stack.Screen name='Login' component={LoginScreen}  options={{
-            headerShown: false,
-          }}  /> */}
-      <Stack.Screen name='Home' component={HomeScreen}  />
+      {/* <Stack.Screen name='Login' component={LoginScreen} screenOptions={{headerShown:false}}  /> */}
+      <Stack.Screen name='Home' component={HomeScreen} />
       <Stack.Screen name='Location' component={LocationScreen} />
       <Stack.Screen name='Categories' component={CategoriesScreen} />
       <Stack.Screen name='Doctor profile' component={RecipeScreen} />
       <Stack.Screen name='Search' component={SearchScreen} />
       <Stack.Screen name='IngredientsDetails' component={IngredientsDetailsScreen} />
       <Stack.Screen name='Profile' component={ProfileScreen} />
+      <Stack.Screen name='Calendar' component={Calender} />
+
+
     </Stack.Navigator>
   )
 }
