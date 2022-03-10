@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import styles from './styles'
 import axios from 'axios';
 import { ActivityIndicator } from 'react-native';
+import { AsyncStorage } from 'react-native';
+
 import {
   StyleSheet,
   Text,
@@ -60,14 +62,18 @@ export default function LoginScreen3({navigation}) {
       setInputs(prevState=>({...prevState,[input]:text}))
     }
     
-    const IP = "http://192.168.22.242:3000"
+    const IP = "http://192.168.250.221:3000"
    
-    const presslogin=()=>{
+    const presslogin= async()=>{
       
           axios.post(`${IP}/user/userlogin`,{email:inputs.email,password:inputs.password})
-          .then(result=>{
+          .then(async result=>{
             console.log(result
+
               );
+              
+              
+             await AsyncStorage.setItem("response",JSON.stringify(result))
                 navigation.navigate('Home')
               
             
@@ -164,12 +170,14 @@ export default function LoginScreen3({navigation}) {
     setInputs(prevState=>({...prevState,[input]:text}))
   }
   
-  const IP = "http://192.168.22.242:3000"
-var pressSignup=()=>{
+  const IP = "http://192.168.250.221:3000"
+  var pressSignup=()=>{
   axios.post(`${IP}/user/usersignup`,{userName:inputs.userName,email:inputs.email,password:inputs.password,phoneNumber:inputs.phoneNumber})
-        .then(result=>{
+        .then( result=>{
           console.log(result
             );
+            
+
             navigation.navigate('Home')
           
           }).catch(err=>{

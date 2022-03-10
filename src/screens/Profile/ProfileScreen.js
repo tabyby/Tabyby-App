@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
+import { AsyncStorage } from 'react-native';
 import {
   StyleSheet,
   Text,
@@ -18,8 +19,60 @@ import { useFonts } from 'expo-font';
 import SSLight from '../../../assets/fonts/source-sans-pro.light.ttf';
 import SSRegular from '../../../assets/fonts/source-sans-pro.regular.ttf';
 import SSBold from '../../../assets/fonts/source-sans-pro.bold.ttf';
+import axios from 'axios';
 
 function Photos({ photos }) {
+  const[data,setdata]=useState([])
+  const[app,setapp]=useState([])
+  useEffect(  () => {
+    const get=async()=>{
+     await AsyncStorage.getItem("response").then((result)=>{
+        
+      var hello = JSON.parse(result)
+      
+      // console.log(hello);
+      console.log( hello.data.user.id_user)
+      const IP = "http://192.168.250.221:3000"
+      axios.get(`${IP}/user/profileUser/${hello.data.user.id_user}`).then(({data})=>{
+        console.log('data hamla',data)
+        setdata(data[0])
+        axios.get(`${IP}/user/appointementapp/${hello.data.user.id_user}`).then(({data})=>{
+        console.log('7sak ',data)
+        setapp(data[0])
+        console.log(data);
+      }).catch((err)=>{
+        console.log(err)
+      })
+    
+        // console.log(setdata);
+      }).catch((err)=>{
+        console.log(err)
+      })
+    })} 
+    get()
+  },[])
+  // const[app,setapp]=useState([])
+  // useEffect(  () => {
+  //   const t=async()=>{ 
+  //     await AsyncStorage.getItem("response").then((result)=>{
+        
+  //       var hello = JSON.parse(result)
+        
+  //       console.log(hello);
+  //       // console.log( hello.data.user.id)
+  //   })
+  //     // const IP = "http://192.168.250.221:3000"
+  //     // axios.get(`${IP}/user/appointementapp/${id_user}`).then((data)=>{
+  //     //   console.log('7sak ',data)
+  //     //   setapp(data)
+  //     //   console.log(data);
+  //     // }).catch((err)=>{
+  //     //   console.log(err)
+  //     // })
+  //   }
+     
+  //  t()
+  // },[])
   const imgWidth = Dimensions.get('screen').width * 0.33333;
   return (
     <View style={{}}>
@@ -38,7 +91,7 @@ function Photos({ photos }) {
                 uri: `https://picsum.photos/200/300?random=${index + 1}`,
               }}
             /> */}
-            <Text>3andek rendez vous sa3a  6 </Text>
+            <Text>3andek rendez vous sa3a  6{app.time} </Text>
            
           </View>
         {/* ))}
@@ -53,6 +106,7 @@ function Photos({ photos }) {
 
 
 export default function ProfileScreen1() {
+  
   const [loaded] = useFonts({
     SSLight,
     SSRegular,
@@ -60,6 +114,36 @@ export default function ProfileScreen1() {
   });
 
   const [showContent, setShowContent] = useState('Photos');
+  const[data,setdata]=useState([])
+  const[app,setapp]=useState([])
+  useEffect(  () => {
+    const get=async()=>{
+     await AsyncStorage.getItem("response").then((result)=>{
+        
+      var hello = JSON.parse(result)
+      
+      // console.log(hello);
+      console.log( hello.data.user.id_user)
+      const IP = "http://192.168.250.221:3000"
+      axios.get(`${IP}/user/profileUser/${hello.data.user.id_user}`).then(({data})=>{
+        console.log('data hamla',data)
+        setdata(data[0])
+        axios.get(`${IP}/user/appointementapp/${hello.data.user.id_user}`).then(({data})=>{
+        console.log('7sak ',data)
+        setapp(data[0])
+        console.log(data);
+      }).catch((err)=>{
+        console.log(err)
+      })
+    
+        // console.log(setdata);
+      }).catch((err)=>{
+        console.log(err)
+      })
+    })} 
+    get()
+  },[])
+ 
 
   if (!loaded) {
     return (
@@ -93,7 +177,7 @@ export default function ProfileScreen1() {
               </View>
               {/* Profile Name and Bio */}
               <View style={styles.nameAndBioView}>
-                <Text style={styles.userFullName}>{'Oussema hmaied'}</Text>
+                <Text style={styles.userFullName}>{data.userName}</Text>
                 
               </View>
              

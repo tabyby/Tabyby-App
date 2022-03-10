@@ -8,7 +8,7 @@ import CategoriesScreen from '../screens/Categories/CategoriesScreen';
 import RecipeScreen from '../screens/DoctorProfile/DoctorProfileScreen';
 import DrawerContainer from '../screens/DrawerContainer/DrawerContainer';
 import SearchScreen from '../screens/Search/SearchScreen';
-// import LoginScreen from '../screens/Authentication/LoginScreen'
+import LoginScreen from '../screens/Authentication/LoginScreen'
 import LocationScreen from '../screens/doctorloc/LocationScreen';
 import ProfileScreen from '../screens/Profile/ProfileScreen'
 
@@ -36,9 +36,9 @@ function MainNavigator() {
     }
       
     >
-      {/* <Stack.Screen name='Login' component={LoginScreen}  options={{
+      <Stack.Screen name='Login' component={LoginScreen}  options={{
             headerShown: false,
-          }}  /> */}
+          }}  />
       <Stack.Screen name='Home' component={HomeScreen}  />
       <Stack.Screen name='Location' component={LocationScreen} />
       <Stack.Screen name='Categories' component={CategoriesScreen} />
