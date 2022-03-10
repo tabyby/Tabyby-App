@@ -89,6 +89,7 @@ function Photos({ photos }) {
       </View>
     </View>
   );
+  
 }
 export default function ProfileScreen1() {
   const [loaded] = useFonts({
