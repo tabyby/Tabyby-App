@@ -75,17 +75,17 @@ export function getNumberOfRecipes(categoryId) {
   return count;
 }
 
-export function getAllIngredients(idArray) {
-  const ingredientsArray = [];
-  idArray.map(index => {
-    ingredients.map(data => {
-      if (data.ingredientId == index[0]) {
-        ingredientsArray.push([data, index[1]]);
-      }
-    });
-  });
-  return ingredientsArray;
-}
+// export function getAllIngredients(idArray) {
+//   const ingredientsArray = [];
+//   idArray.map(index => {
+//     ingredients.map(data => {
+//       if (data.ingredientId == index[0]) {
+//         ingredientsArray.push([data, index[1]]);
+//       }
+//     });
+//   });
+//   return ingredientsArray;
+// }
 
 // functions for search
 export function getRecipesByIngredientName(ingredientName) {
