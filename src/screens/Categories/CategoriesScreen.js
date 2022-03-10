@@ -1,5 +1,5 @@
 import React, { useLayoutEffect,useEffect,useState } from "react";
-import { FlatList, Text, View, TouchableHighlight, Image } from "react-native";
+import { FlatList, Text, View, TouchableHighlight, Image, ScrollView } from "react-native";
 import styles from "./styles";
 import MenuImage from "../../components/MenuImage/MenuImage";
 import { getCategoryName} from "../../data/MockDataAPI";
@@ -9,7 +9,7 @@ export default function HomeScreen(props) {
   const { navigation } = props;
   const [doctor, setdoctors] = useState([]);
   useEffect(() => {
-    var ip= "http://192.168.86.37:3000"
+    var ip= "http://192.168.250.37:3000"
   axios.get(`${ip}/doctor/doctors`).then(res=>{
    setdoctors(res.data)
   }).catch(err=>{console.log(err);})
@@ -44,8 +44,11 @@ export default function HomeScreen(props) {
   );
 
   return (
+    <ScrollView style={styles.back}>
+
     <View>
-      <FlatList vertical showsVerticalScrollIndicator={false} numColumns={2} data={doctor} renderItem={renderRecipes} keyExtractor={(item) => `${item.id}`} />
+        <FlatList vertical showsVerticalScrollIndicator={false} numColumns={2} data={doctor} renderItem={renderRecipes} keyExtractor={(item) => `${item.id}`} />
     </View>
+    </ScrollView>
   );
 }
