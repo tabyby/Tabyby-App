@@ -15,6 +15,7 @@ export default function Appointement() {
             <View>
                 <Text style={styles.text}>Set the day:</Text>
             </View>
+            <Text></Text>
 
             <DatePicker
                 style={{ width: '100%' }}
@@ -27,7 +28,9 @@ export default function Appointement() {
                 }
 
             />
+            <Text></Text>
                 <Text style={styles.text}>Set the time:</Text>
+                <Text></Text>
             <Picker
                 style={{ marginVertical: 10 }}
                 SelectedValue={{ selectedCountry }}
@@ -38,8 +41,12 @@ export default function Appointement() {
                 {country.map((c) => (<Picker.Item label={c} value={c} />))}
 
             </Picker>
+            <Text></Text>
+
             <View>
             </View>
+            <Text></Text>
+
             <View
                 style={{
                     // display: 'flex',
@@ -73,9 +80,12 @@ export default function Appointement() {
                     placeholder='dd/mm/yy'
                 />
             </View>
+            <Text></Text>
+
             <TouchableOpacity
                 style= {styles.roundedButton}
             >
+                
                 <Text style={styles.buttonText}>
                     validate 
                 </Text>

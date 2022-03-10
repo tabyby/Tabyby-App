@@ -55,7 +55,7 @@ export default function LoginScreen3({ navigation }) {
       setInputs(prevState => ({ ...prevState, [input]: text }))
     }
 
-    const IP = "http://192.168.22.235:3000"
+    const IP = "http://192.168.250.37:3000"
 
     const presslogin = () => {
 
@@ -138,10 +138,8 @@ export default function LoginScreen3({ navigation }) {
               <Text style={styles.registerText}
                         onPress={() => {
                           navigation.navigate("Signup");
-
                         }}
               >
-                
                 Don't have an account? Register Now
               </Text>
             </TouchableOpacity>
@@ -153,10 +151,7 @@ export default function LoginScreen3({ navigation }) {
                 <Icon name='facebook' type='font-awesome' color='#26619c' />
               </TouchableOpacity>
             </View>
-
-
           </View>
-
         </View>
       </View>
     );
@@ -175,7 +170,7 @@ export default function LoginScreen3({ navigation }) {
       setInputs(prevState => ({ ...prevState, [input]: text }))
     }
 
-    const IP = "http://192.168.22.235:3000"
+    const IP = "http://192.168.250.37:3000"
     var pressSignup = () => {
       axios.post(`${IP}/user/usersignup`, { userName: inputs.userName, email: inputs.email, password: inputs.password, phoneNumber: inputs.phoneNumber })
         .then(result => {

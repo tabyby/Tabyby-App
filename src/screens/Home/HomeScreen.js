@@ -61,7 +61,36 @@ export default function CategoriesScreen(props) {
       {/* <FlatList vertical showsVerticalScrollIndicator={false} numColumns={6} renderItem={renderAdds} /> */}
       <FlatList vertical showsVerticalScrollIndicator={false} numColumns={6} data={categories} renderItem={renderCategory} keyExtractor={(item) => `${item.id}`} />
       </View>
-      <Blogs />
+      <TouchableHighlight underlayColor="rgba(73,182,77,0.9)">
+      <View style={styles.categoriesItemContainer}>
+        <Image style={styles.categoriesPhoto}  source={{
+          uri: 'https://fscluster.org/sites/default/files/styles/core-group-featured-image/public/banner-696x321.png?itok=l7uFday9',
+        }}  />
+        <Text style={styles.categoriesName}></Text>
+        <Text style={styles.categoriesInfo}>Covid-19: The end!</Text>
+        <Text>By doctor Mortadha</Text>
+      </View>
+    </TouchableHighlight>
+    <TouchableHighlight underlayColor="rgba(73,182,77,0.9)">
+      <View style={styles.categoriesItemContainer}>
+        <Image style={styles.categoriesPhoto}  source={{
+          uri: 'https://mi-hub.com/wp-content/uploads/2019/02/maintaining-a-healthy-lifestyle.jpeg',
+        }}  />
+        <Text style={styles.categoriesName}></Text>
+        <Text style={styles.categoriesInfo}>Be healthy!</Text>
+        <Text>By doctor Lotfi</Text>
+      </View>
+    </TouchableHighlight>
+    <TouchableHighlight underlayColor="rgba(73,182,77,0.9)">
+      <View style={styles.categoriesItemContainer}>
+        <Image style={styles.categoriesPhoto}  source={{
+          uri: 'https://img.passeportsante.net/1000x526/2020-01-07/i93183-.jpeg',
+        }}  />
+        <Text style={styles.categoriesName}></Text>
+        <Text style={styles.categoriesInfo}>Winter is coming: Are you ready?</Text>
+        <Text>By doctor Marwa</Text>
+      </View>
+    </TouchableHighlight>
     </ScrollView>
   );
 }

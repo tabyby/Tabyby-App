@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
       fontSize: 16,
       fontFamily: 'NSLight',
       paddingHorizontal: 4,
-      color: '#fff',
+      color: '#26619c',
     },
     button: {
       marginHorizontal: 20,

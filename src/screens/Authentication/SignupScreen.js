@@ -54,7 +54,7 @@ export default function LoginScreen3({ navigation }) {
             setInputs(prevState => ({ ...prevState, [input]: text }))
         }
 
-        const IP = "http://192.168.22.235:3000"
+        const IP = "http://192.168.250.37:3000"
 
         const presslogin = () => {
 
@@ -156,13 +156,13 @@ export default function LoginScreen3({ navigation }) {
             setInputs(prevState => ({ ...prevState, [input]: text }))
         }
 
-        const IP = "http://192.168.22.235:3000"
+        const IP = "http://192.168.250.37:3000"
         var pressSignup = () => {
             axios.post(`${IP}/user/usersignup`, { userName: inputs.userName, email: inputs.email, password: inputs.password, phoneNumber: inputs.phoneNumber })
                 .then(result => {
                     console.log(result
                     );
-                    navigation.navigate('Home')
+                    navigation.navigate('Login')
 
                 }).catch(err => {
                     console.log(err, "sfqd");
@@ -277,12 +277,11 @@ export default function LoginScreen3({ navigation }) {
                                     color='#26619c'
                                     size={22}
                                 />
-
                             </TouchableOpacity>
                         </View>
-
                         <TouchableOpacity style={styles.loginButton}>
-                            <Text style={styles.loginButtonText} onPress={pressSignup}>Register</Text>
+                            <Text style={styles.loginButtonText} onPress={pressSignup} 
+                            >Register</Text>
                         </TouchableOpacity>
                         <View>
                             <Text
@@ -343,7 +342,7 @@ export default function LoginScreen3({ navigation }) {
                         }}
                         onPress={() => switchTab()}
                     >
-                        <Text style={zina.switchText}>Login</Text>
+                        <Text style={zina.switchText} >Login</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={{
