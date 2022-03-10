@@ -59,17 +59,16 @@ export default function LoginScreen3({ navigation }) {
 
     const presslogin = () => {
 
-      axios.post(`${IP}/user/userlogin`, { email: inputs.email, password: inputs.password })
-        .then(result => {
-          console.log(result
-          );
-          navigation.navigate('Home')
-
-
-        }).catch(err => {
-          console.log(err, "sfqd");
-          alert("Email or password incorrect")
-        })
+      axios.post(`${IP}/user/userlogin`,{email:inputs.email,password:inputs.password})
+          .then(async result=>{
+            console.log(result
+              );
+             await AsyncStorage.setItem("response",JSON.stringify(result))
+                navigation.navigate('Home')
+            }).catch(err=>{
+              console.log(err,"sfqd");
+              alert("Please write your password")
+            })
     }
     return (
       <View style={styles.container}>
