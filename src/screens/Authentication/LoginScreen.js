@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import styles from './styles'
+import zina from './styles'
 import axios from 'axios';
 import { ActivityIndicator } from 'react-native';
 import {
@@ -9,9 +9,10 @@ import {
   StatusBar,
   TextInput,
   TouchableOpacity,
+  Dimensions,
   TouchableWithoutFeedback,
   Keyboard,
-  
+
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Icon } from 'react-native-elements';
@@ -21,18 +22,14 @@ import NSRegular from '../../../assets/fonts/NunitoSans-Regular.ttf';
 import NSBold from '../../../assets/fonts/NunitoSans-Bold.ttf';
 import NSExtraBold from '../../../assets/fonts/NunitoSans-ExtraBold.ttf';
 
-export default function LoginScreen3({navigation}) {
+export default function LoginScreen3({ navigation }) {
+  
   const [loaded] = useFonts({
     NSLight,
     NSRegular,
     NSBold,
     NSExtraBold,
   });
-  
- 
- 
-  
-  
 
   const [activeTab, setActiveTab] = useState('Login');
 
@@ -47,105 +44,119 @@ export default function LoginScreen3({navigation}) {
       setActiveTab('Login');
     }
   }
-  
- function Login() {
+
+  function Login() {
     const [showLoginPassword, setShowLoginPassword] = useState(false);
-    const[inputs,setInputs]=React.useState({
-      
-      email:"",
-      password:"",
-   
+    const [inputs, setInputs] = React.useState({
+      email: "",
+      password: "",
     })
-    const  handleonChange=(text,input)=>{
-      setInputs(prevState=>({...prevState,[input]:text}))
+    const handleonChange = (text, input) => {
+      setInputs(prevState => ({ ...prevState, [input]: text }))
     }
-    
-    const IP = "http://192.168.1.31:3000"
-   
-    const presslogin=()=>{
-      
-          axios.post(`${IP}/user/userlogin`,{email:inputs.email,password:inputs.password})
-          .then(result=>{
-            console.log(result
-              );
-                navigation.navigate('Home')
-              
-            
-            }).catch(err=>{
-              console.log(err,"sfqd");
-              alert("ekteb mot de  passe ya stal")
-            })
-      
-      }
+
+    const IP = "http://192.168.22.235:3000"
+
+    const presslogin = () => {
+
+      axios.post(`${IP}/user/userlogin`, { email: inputs.email, password: inputs.password })
+        .then(result => {
+          console.log(result
+          );
+          navigation.navigate('Home')
+
+
+        }).catch(err => {
+          console.log(err, "sfqd");
+          alert("Email or password incorrect")
+        })
+    }
     return (
-      <View style={{ marginTop: 10 }}>
-        <View style={styles.inputView}>
-          <Icon
-            style={{ paddingHorizontal: 4 }}
-            name='envelope'
-            type='font-awesome'
-            color='#74b3ce'
-            size={22}
-          />
-          <TextInput
-            style={styles.input}
-            placeholder='Email'
-            placeholderTextColor='#7F7F7F'
-            keyboardType='email-address'
-            textContentType='emailAddress'
-            autoCompleteType='email'
-            // returnKeyType='next'
-            onChangeText={(text)=>handleonChange(text,"email")}
-          />
-        </View>
-        <View style={styles.inputView}>
-          <Icon
-            style={{ paddingHorizontal: 4 }}
-            name='key'
-            type='font-awesome-5'
-            color='#74b3ce'
-            size={22}
-          />
-          <TextInput
-            style={styles.input}
-            placeholder='Password'
-            placeholderTextColor='#7F7F7F'
-            secureTextEntry={!showLoginPassword}
-            textContentType='password'
-            returnKeyType='done'
-            onChangeText={(text)=>handleonChange(text,"password")}
-          />
-          <TouchableOpacity
-            style={{ paddingVertical: 4 }}
-            onPress={() => {
-              setShowLoginPassword(!showLoginPassword);
-            }}
-          >
-            <Icon
-              style={{ paddingHorizontal: 4 }}
-              name='eye'
-              type='font-awesome'
-              color='#74b3ce'
-              size={22}
-            />
-          </TouchableOpacity>
-        </View>
-        <TouchableOpacity style={styles.button}  >
-          <Text style={styles.buttonText} onPress={presslogin} >Login</Text>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
-        </TouchableOpacity>
-        <View style={styles.socialLoginView}>
-          <TouchableOpacity style={styles.socialLoginTouchable}>
-            <Icon name='google' type='font-awesome' color='#26619c' />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.socialLoginTouchable}>
-            <Icon name='facebook' type='font-awesome' color='#26619c' />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.socialLoginTouchable}>
-            <Icon name='apple' type='font-awesome' color='#26619c' />
-          </TouchableOpacity>
+      <View style={styles.container}>
+        <View style={styles.bigCircle}></View>
+        <View style={styles.smallCircle}></View>
+        <View style={styles.centerizedView}>
+          <View style={styles.authBox}>
+            <View style={styles.logoBox}>
+              <Icon
+                color='#fff'
+                name='comments'
+                type='font-awesome'
+                size={50}
+              />
+            </View>
+            <Text style={styles.loginTitleText}>Login</Text>
+            <View style={styles.hr}></View>
+            <View style={zina.inputView}>
+              <Icon
+                style={{ paddingHorizontal: 4, width: 30 }}
+                name='envelope'
+                type='font-awesome'
+                color='#26619c'
+                size={22}
+              />
+              <TextInput
+                style={zina.input}
+                placeholder='Email'
+                placeholderTextColor='#7F7F7F'
+                keyboardType='email-address'
+                textContentType='emailAddress'
+                autoCompleteType='email'
+                // returnKeyType='next'
+                onChangeText={(text) => handleonChange(text, "email")}
+              />
+            </View>
+            <View style={zina.inputView}>
+              <Icon
+                style={{ paddingHorizontal: 4, width: 30 }}
+                name='key'
+                type='font-awesome-5'
+                color='#26619c'
+                size={22}
+              />
+              <TextInput
+                style={zina.input}
+                placeholder='Password'
+                placeholderTextColor='#7F7F7F'
+                secureTextEntry={!showLoginPassword}
+                textContentType='password'
+                returnKeyType='done'
+                onChangeText={(text) => handleonChange(text, "password")}
+              />
+              <TouchableOpacity
+                style={{ paddingVertical: 4 }}
+                onPress={() => {
+                  setShowLoginPassword(!showLoginPassword);
+                }}
+              >
+              </TouchableOpacity>
+            </View>
+            <TouchableOpacity style={styles.loginButton}  >
+              <Text style={styles.loginButtonText} onPress={presslogin} >Login</Text>
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <Text style={styles.registerText}
+                        onPress={() => {
+                          navigation.navigate("Signup");
+
+                        }}
+              >
+                
+                Don't have an account? Register Now
+              </Text>
+            </TouchableOpacity>
+            <View style={zina.socialLoginView}>
+              <TouchableOpacity style={zina.socialLoginTouchable}>
+                <Icon name='google' type='font-awesome' color='#26619c' />
+              </TouchableOpacity>
+              <TouchableOpacity style={zina.socialLoginTouchable}>
+                <Icon name='facebook' type='font-awesome' color='#26619c' />
+              </TouchableOpacity>
+            </View>
+
+
+          </View>
+
         </View>
       </View>
     );
@@ -153,34 +164,34 @@ export default function LoginScreen3({navigation}) {
 
   function Register() {
     const [showRegisterPassword, setShowRegisterPassword] = useState(false);
-   
-  const[inputs,setInputs]=React.useState({
-    userName:"",
-    email:"",
-    password:"",
-  phoneNumber:""
-  })
-  const  handleonChange=(text,input)=>{
-    setInputs(prevState=>({...prevState,[input]:text}))
-  }
-  
-  const IP = "http://192.168.1.31:3000"
-var pressSignup=()=>{
-  axios.post(`${IP}/user/usersignup`,{userName:inputs.userName,email:inputs.email,password:inputs.password,phoneNumber:inputs.phoneNumber})
-        .then(result=>{
+
+    const [inputs, setInputs] = React.useState({
+      userName: "",
+      email: "",
+      password: "",
+      phoneNumber: ""
+    })
+    const handleonChange = (text, input) => {
+      setInputs(prevState => ({ ...prevState, [input]: text }))
+    }
+
+    const IP = "http://192.168.22.235:3000"
+    var pressSignup = () => {
+      axios.post(`${IP}/user/usersignup`, { userName: inputs.userName, email: inputs.email, password: inputs.password, phoneNumber: inputs.phoneNumber })
+        .then(result => {
           console.log(result
-            );
-            navigation.navigate('Home')
-          
-          }).catch(err=>{
-            console.log(err,"sfqd");
-            alert("erreur")
-          })
-  
-}
+          );
+          navigation.navigate('Home')
+
+        }).catch(err => {
+          console.log(err, "sfqd");
+          alert("erreur")
+        })
+
+    }
     return (
       <View style={{ marginTop: 10 }}>
-        <View style={styles.inputView}>
+        <View style={zina.inputView}>
           <Icon
             style={{ paddingHorizontal: 4, width: 30 }}
             name='user'
@@ -189,18 +200,18 @@ var pressSignup=()=>{
             size={22}
           />
           <TextInput
-            style={styles.input}
+            style={zina.input}
             placeholder='username'
             placeholderTextColor='#f1f2f6'
-             autoCompleteType='name'
+            autoCompleteType='name'
             name="userName"
-            onChangeText={(text)=>handleonChange(text,"userName")}
-            
+            onChangeText={(text) => handleonChange(text, "userName")}
+
           />
         </View>
 
-        
-        <View style={styles.inputView}>
+
+        <View style={zina.inputView}>
           <Icon
             style={{ paddingHorizontal: 4, width: 30 }}
             name='envelope'
@@ -209,7 +220,7 @@ var pressSignup=()=>{
             size={22}
           />
           <TextInput
-            style={styles.input}
+            style={zina.input}
             placeholder='Email'
             placeholderTextColor='#7F7F7F'
             keyboardType='email-address'
@@ -217,12 +228,12 @@ var pressSignup=()=>{
             autoCompleteType='email'
             // returnKeyType='next'
             name="email"
-            onChangeText={(text)=>handleonChange(text,"email")}
-            
-          
+            onChangeText={(text) => handleonChange(text, "email")}
+
+
           />
         </View>
-        <View style={styles.inputView}>
+        <View style={zina.inputView}>
           <Icon
             style={{ paddingHorizontal: 4, width: 30 }}
             name='phone'
@@ -231,19 +242,17 @@ var pressSignup=()=>{
             size={22}
           />
           <TextInput
-            style={styles.input}
+            style={zina.input}
             placeholder='Phone'
             placeholderTextColor='#7F7F7F'
             keyboardType='phone-pad'
             // returnKeyType='next' 
             name="phoneNumber"
-            onChangeText={(text)=>handleonChange(text,"phoneNumber")}
-           
-            
+            onChangeText={(text) => handleonChange(text, "phoneNumber")}
           />
         </View>
-          
-        <View style={styles.inputView}>
+
+        <View style={zina.inputView}>
           <Icon
             style={{ paddingHorizontal: 4, width: 30 }}
             name='key'
@@ -252,17 +261,14 @@ var pressSignup=()=>{
             size={22}
           />
           <TextInput
-            style={styles.input}
+            style={zina.input}
             placeholder='Password'
             placeholderTextColor='#7F7F7F'
             secureTextEntry={!showRegisterPassword}
             textContentType='password'
             returnKeyType='done'
             name="password"
-            onChangeText={(text)=>handleonChange(text,"password")}
-           
-
-            
+            onChangeText={(text) => handleonChange(text, "password")}
           />
           <TouchableOpacity
             style={{ paddingVertical: 4 }}
@@ -277,11 +283,11 @@ var pressSignup=()=>{
               color='#74b3ce'
               size={22}
             />
-            
+
           </TouchableOpacity>
         </View>
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}   onPress={pressSignup}>Register</Text>
+        <TouchableOpacity style={zina.button}>
+          <Text style={zina.buttonText} onPress={pressSignup}>Register</Text>
         </TouchableOpacity>
         <View>
           <Text
@@ -297,19 +303,19 @@ var pressSignup=()=>{
           </Text>
           <View
             style={[
-              styles.socialLoginView,
+              zina.socialLoginView,
               { marginTop: 14, justifyContent: 'flex-start' },
             ]}
           >
             <TouchableOpacity
-              style={[styles.socialLoginTouchable, { marginLeft: 0 }]}
+              style={[zina.socialLoginTouchable, { marginLeft: 0 }]}
             >
               <Icon name='google' type='font-awesome' color='#26619c' />
             </TouchableOpacity>
-            <TouchableOpacity style={styles.socialLoginTouchable}>
+            <TouchableOpacity style={zina.socialLoginTouchable}>
               <Icon name='facebook' type='font-awesome' color='#26619c' />
             </TouchableOpacity>
-            <TouchableOpacity style={styles.socialLoginTouchable}>
+            <TouchableOpacity style={zina.socialLoginTouchable}>
               <Icon name='apple' type='font-awesome' color='#26619c' />
             </TouchableOpacity>
           </View>
@@ -321,7 +327,7 @@ var pressSignup=()=>{
   if (!loaded) {
     return (
       <View>
-        <ActivityIndicator size="large" color='#2ed573'/>
+        <ActivityIndicator size="large" color='#2ed573' />
         <Text>Loading...</Text>
       </View>
     );
@@ -329,11 +335,10 @@ var pressSignup=()=>{
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-      <LinearGradient colors={['white', '#74b3ce']} style={styles.container}>
-        <Text style={styles.welcomeText}>
-          {activeTab === 'Login' ? 'Welcome Back' : 'Register Now'}
+      <LinearGradient colors={['white', 'white']} style={zina.container}>
+        <Text style={zina.welcomeText}>
         </Text>
-        <View style={styles.switchTabsView}>
+        <View style={zina.switchTabsView}>
           <TouchableOpacity
             style={{
               borderBottomWidth: activeTab === 'Login' ? 4 : 0,
@@ -343,7 +348,7 @@ var pressSignup=()=>{
             }}
             onPress={() => switchTab()}
           >
-            <Text style={styles.switchText}>Login</Text>
+            <Text style={zina.switchText}>Login</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={{
@@ -354,7 +359,6 @@ var pressSignup=()=>{
             }}
             onPress={() => switchTab()}
           >
-            <Text style={styles.switchText}>Register</Text>
           </TouchableOpacity>
         </View>
         {activeTab === 'Login' ? <Login /> : <Register />}
@@ -363,3 +367,114 @@ var pressSignup=()=>{
   );
 }
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    position: 'relative',
+  },
+  bigCircle: {
+    width: Dimensions.get('window').height * 0.7,
+    height: Dimensions.get('window').height * 0.7,
+    backgroundColor: "#74b3ce",
+    borderRadius: 1000,
+    position: 'absolute',
+    right: Dimensions.get('window').width * 0.25,
+    top: -50,
+  },
+  smallCircle: {
+    width: Dimensions.get('window').height * 0.4,
+    height: Dimensions.get('window').height * 0.4,
+    backgroundColor: '#26619c',
+    borderRadius: 1000,
+    position: 'absolute',
+    bottom: Dimensions.get('window').width * -0.2,
+    right: Dimensions.get('window').width * -0.3,
+  },
+  centerizedView: {
+    width: '100%',
+    top: '8%',
+  },
+  authBox: {
+    width: '80%',
+    backgroundColor: '#fafafa',
+    borderRadius: 20,
+    alignSelf: 'center',
+    paddingHorizontal: 14,
+    paddingBottom: 30,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  logoBox: {
+    width: 100,
+    height: 100,
+    backgroundColor: '#26619c',
+    borderRadius: 1000,
+    alignSelf: 'center',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    top: -50,
+    marginBottom: -50,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 1.41,
+    elevation: 2,
+  },
+  loginTitleText: {
+    fontSize: 26,
+    fontWeight: 'bold',
+    marginTop: 10,
+  },
+  hr: {
+    width: '100%',
+    height: 0.5,
+    backgroundColor: '#c4c9c7',
+    marginTop: 6,
+  },
+  inputBox: {
+    marginTop: 10,
+  },
+  inputLabel: {
+    fontSize: 18,
+    marginBottom: 6,
+  },
+  input: {
+    width: '100%',
+    height: 40,
+    backgroundColor: '#dfe4ea',
+    borderRadius: 4,
+    paddingHorizontal: 10,
+  },
+  loginButton: {
+    backgroundColor: '#26619c',
+    marginTop: 10,
+    paddingVertical: 6,
+    borderRadius: 20,
+  },
+  loginButtonText: {
+    color: '#fff',
+    textAlign: 'center',
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  registerText: {
+    textAlign: 'center',
+    marginTop: 20,
+    fontSize: 16,
+  },
+  forgotPasswordText: {
+    textAlign: 'center',
+    marginTop: 12,
+    fontSize: 16,
+  },
+});
