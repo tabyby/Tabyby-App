@@ -11,6 +11,7 @@ import SearchScreen from '../screens/Search/SearchScreen';
 // import LoginScreen from '../screens/Authentication/LoginScreen'
 import LocationScreen from '../screens/doctorloc/LocationScreen';
 import ProfileScreen from '../screens/Profile/ProfileScreen'
+import Appointement from '../screens/Appointement/Appointement';
 
 import IngredientsDetailsScreen from '../screens/DoctorDetails/DoctorDetailsScreen';
 import Calender from '../screens/Calender/Calender'
@@ -41,9 +42,10 @@ function MainNavigator() {
       <Stack.Screen name='Categories' component={CategoriesScreen} />
       <Stack.Screen name='Doctor profile' component={RecipeScreen} />
       <Stack.Screen name='Search' component={SearchScreen} />
-      <Stack.Screen name='IngredientsDetails' component={IngredientsDetailsScreen} />
+      <Stack.Screen name='Appointement' component={Appointement} />
       <Stack.Screen name='Profile' component={ProfileScreen} />
       <Stack.Screen name='Calendar' component={Calender} />
+      {/* <Stack.Screen name='Modal' component={Modal}/> */}
 
 
     </Stack.Navigator>
