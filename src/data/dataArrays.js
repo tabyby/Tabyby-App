@@ -14,7 +14,7 @@ export const categories = [
     id: 2,
     name: 'dermatologist',
     photo_url:
-      'https://cdn.discordapp.com/attachments/933742466438410342/946502917718937680/dermis.png'
+      'https://media.discordapp.net/attachments/935973910695002123/949223628975783966/dermiss.png?width=468&height=468'
   },
   {
     id: 4,

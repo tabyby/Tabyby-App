@@ -3,13 +3,18 @@ import { ScrollView, Picker, Text, View, TextInput, StyleSheet, TouchableOpacity
 import DatePicker from 'react-native-datepicker'
 
 
-export default function Appointement() {
+export default function Appointement(props) {
     const [selectedCountry, setSelectedCountry] = useState("")
+    const { navigation, route } = props;
+
     const [country] = useState(
         [
             "08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00"
         ].sort())
     const [date, setDate] = useState('')
+    const presslogin = () => {
+                  navigation.navigate('Profile')
+      }
     return (
         <ScrollView backgroundColor= 'white' style={styles.container}>
             <View>
@@ -86,7 +91,8 @@ export default function Appointement() {
                 style= {styles.roundedButton}
             >
                 
-                <Text style={styles.buttonText}>
+                <Text style={styles.buttonText}
+                onPress={presslogin}>
                     validate 
                 </Text>
             </TouchableOpacity>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import zina from './styles'
 import axios from 'axios';
-import { ActivityIndicator } from 'react-native';
+import { ActivityIndicator, AsyncStorage } from 'react-native';
 import {
     StyleSheet,
     Text,
