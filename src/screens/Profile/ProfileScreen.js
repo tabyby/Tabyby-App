@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { AsyncStorage } from 'react-native';
 import {
   StyleSheet,
@@ -19,32 +19,33 @@ import SSRegular from '../../../assets/fonts/source-sans-pro.regular.ttf';
 import SSBold from '../../../assets/fonts/source-sans-pro.bold.ttf';
 import axios from 'axios';
 function Photos({ photos }) {
-  const[data,setdata]=useState([])
-  const[app,setapp]=useState([])
-  useEffect(  () => {
-    const get=async()=>{
-     await AsyncStorage.getItem("response").then((result)=>{
-      var hello = JSON.parse(result)
-      // console.log(hello);
-      console.log( hello.data.user.id_user)
-      const IP = "http://192.168.250.37:3000"
-      axios.get(`${IP}/user/profileUser/${hello.data.user.id_user}`).then(({data})=>{
-        console.log('data hamla',data)
-        setdata(data[0])
-        axios.get(`${IP}/user/appointementapp/${hello.data.user.id_user}`).then(({data})=>{
-        console.log('7sak ',data)
-        setapp(data[0])
-        console.log(data);
-      }).catch((err)=>{
-        console.log(err)
+  const [data, setdata] = useState([])
+  const [app, setapp] = useState([])
+  useEffect(() => {
+    const get = async () => {
+      await AsyncStorage.getItem("response").then((result) => {
+        var hello = JSON.parse(result)
+        // console.log(hello);
+        console.log(hello.data.user.id_user)
+        const IP = "http://192.168.250.37:3000"
+        axios.get(`${IP}/user/profileUser/${hello.data.user.id_user}`).then(({ data }) => {
+          console.log('data hamla', data)
+          setdata(data[0])
+          axios.get(`${IP}/user/appointementapp/${hello.data.user.id_user}`).then(({ data }) => {
+            console.log('7sak ', data)
+            setapp(data[0])
+            console.log(data);
+          }).catch((err) => {
+            console.log(err)
+          })
+          // console.log(setdata);
+        }).catch((err) => {
+          console.log(err)
+        })
       })
-        // console.log(setdata);
-      }).catch((err)=>{
-        console.log(err)
-      })
-    })}
+    }
     get()
-  },[])
+  }, [])
   // const[app,setapp]=useState([])
   // useEffect(  () => {
   //   const t=async()=>{
@@ -75,21 +76,33 @@ function Photos({ photos }) {
         }}
       >
         {/* {photos.map((photo, index) => ( */}
-          <View>
-            {/* <Image
+        <View>
+          {/* <Image
               style={{ width: imgWidth, height: imgWidth }}
               source={{
                 uri: `https://picsum.photos/200/300?random=${index + 1}`,
               }}
             /> */}
-            <Text>your appointement is at: {app.time} </Text>
+            
+          <View style={styles.userCardRight}>
+            <Text style={styles.userCard} >        your appointement is at: 9:30 AM                </Text>
+            <Text style={styles.userCard}>                    With Doctor Ismail </Text>
+        <TouchableOpacity
+                style= {styles.roundedButton}
+            >
+        <Text style={styles.buttonText}
+              >
+                    Cancel 
+                </Text>
+                </TouchableOpacity>
           </View>
+        </View>
         {/* ))}
          */}
       </View>
     </View>
   );
-  
+
 }
 export default function ProfileScreen1() {
   const [loaded] = useFonts({
@@ -98,32 +111,33 @@ export default function ProfileScreen1() {
     SSBold,
   });
   const [showContent, setShowContent] = useState('Photos');
-  const[data,setdata]=useState([])
-  const[app,setapp]=useState([])
-  useEffect(  () => {
-    const get=async()=>{
-     await AsyncStorage.getItem("response").then((result)=>{
-      var hello = JSON.parse(result)
-      // console.log(hello);
-      console.log( hello.data.user.id_user)
-      const IP = "http://192.168.250.37:3000"
-      axios.get(`${IP}/user/profileUser/${hello.data.user.id_user}`).then(({data})=>{
-        console.log('data hamla',data)
-        setdata(data[0])
-        axios.get(`${IP}/user/appointementapp/${hello.data.user.id_user}`).then(({data})=>{
-        console.log('7sak ',data)
-        setapp(data[0])
-        console.log(data);
-      }).catch((err)=>{
-        console.log(err)
+  const [data, setdata] = useState([])
+  const [app, setapp] = useState([])
+  useEffect(() => {
+    const get = async () => {
+      await AsyncStorage.getItem("response").then((result) => {
+        var hello = JSON.parse(result)
+        // console.log(hello);
+        console.log(hello.data.user.id_user)
+        const IP = "http://192.168.250.37:3000"
+        axios.get(`${IP}/user/profileUser/${hello.data.user.id_user}`).then(({ data }) => {
+          console.log('data hamla', data)
+          setdata(data[0])
+          axios.get(`${IP}/user/appointementapp/${hello.data.user.id_user}`).then(({ data }) => {
+            console.log('7sak ', data)
+            setapp(data[0])
+            console.log(data);
+          }).catch((err) => {
+            console.log(err)
+          })
+          // console.log(setdata);
+        }).catch((err) => {
+          console.log(err)
+        })
       })
-        // console.log(setdata);
-      }).catch((err)=>{
-        console.log(err)
-      })
-    })}
+    }
     get()
-  },[])
+  }, [])
   if (!loaded) {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -138,7 +152,7 @@ export default function ProfileScreen1() {
           <View>
             <Image
               style={styles.coverImage}
-              source={{ uri: 'https://picsum.photos/500/500?random=211' }}/// coverture
+              source={{ uri: 'https://wallpaperaccess.com/full/2482240.jpg' }}/// coverture
             />
           </View>
           <View style={styles.profileContainer}>
@@ -173,7 +187,7 @@ export default function ProfileScreen1() {
               </View>
               {showContent === 'Photos' ? (
                 <Photos photos={new Array(13).fill(1)} />
-              ) :null}
+              ) : null}
             </View>
           </View>
         </>

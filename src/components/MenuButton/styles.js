@@ -14,7 +14,8 @@ const styles = StyleSheet.create({
   },
   btnIcon: {
     height: 25,
-    width: 25
+    width: 25,
+    color : '#fff'
   },
   btnText: {
     fontSize: 16,
