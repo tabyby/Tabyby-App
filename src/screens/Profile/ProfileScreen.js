@@ -11,28 +11,23 @@ import {
   Dimensions,
 } from 'react-native';
 import styles from './styles'
-
 import { Feather as Icon } from '@expo/vector-icons';
-
 // Fonts
 import { useFonts } from 'expo-font';
 import SSLight from '../../../assets/fonts/source-sans-pro.light.ttf';
 import SSRegular from '../../../assets/fonts/source-sans-pro.regular.ttf';
 import SSBold from '../../../assets/fonts/source-sans-pro.bold.ttf';
 import axios from 'axios';
-
 function Photos({ photos }) {
   const[data,setdata]=useState([])
   const[app,setapp]=useState([])
   useEffect(  () => {
     const get=async()=>{
      await AsyncStorage.getItem("response").then((result)=>{
-        
       var hello = JSON.parse(result)
-      
       // console.log(hello);
       console.log( hello.data.user.id_user)
-      const IP = "http://192.168.250.221:3000"
+      const IP = "http://192.168.250.37:3000"
       axios.get(`${IP}/user/profileUser/${hello.data.user.id_user}`).then(({data})=>{
         console.log('data hamla',data)
         setdata(data[0])
@@ -43,25 +38,22 @@ function Photos({ photos }) {
       }).catch((err)=>{
         console.log(err)
       })
-    
         // console.log(setdata);
       }).catch((err)=>{
         console.log(err)
       })
-    })} 
+    })}
     get()
   },[])
   // const[app,setapp]=useState([])
   // useEffect(  () => {
-  //   const t=async()=>{ 
+  //   const t=async()=>{
   //     await AsyncStorage.getItem("response").then((result)=>{
-        
   //       var hello = JSON.parse(result)
-        
   //       console.log(hello);
   //       // console.log( hello.data.user.id)
   //   })
-  //     // const IP = "http://192.168.250.221:3000"
+  //     // const IP = "http://192.168.250.37:3000"
   //     // axios.get(`${IP}/user/appointementapp/${id_user}`).then((data)=>{
   //     //   console.log('7sak ',data)
   //     //   setapp(data)
@@ -70,7 +62,6 @@ function Photos({ photos }) {
   //     //   console.log(err)
   //     // })
   //   }
-     
   //  t()
   // },[])
   const imgWidth = Dimensions.get('screen').width * 0.33333;
@@ -91,20 +82,15 @@ function Photos({ photos }) {
                 uri: `https://picsum.photos/200/300?random=${index + 1}`,
               }}
             /> */}
-            <Text>3andek rendez vous sa3a  6{app.time} </Text>
-           
+            <Text>your appointement is at: {app.time} </Text>
           </View>
         {/* ))}
          */}
       </View>
     </View>
   );
+  
 }
-
-
-
-
-
 export default function ProfileScreen1() {
   
   const [loaded] = useFonts({
@@ -112,19 +98,16 @@ export default function ProfileScreen1() {
     SSRegular,
     SSBold,
   });
-
   const [showContent, setShowContent] = useState('Photos');
   const[data,setdata]=useState([])
   const[app,setapp]=useState([])
   useEffect(  () => {
     const get=async()=>{
      await AsyncStorage.getItem("response").then((result)=>{
-        
       var hello = JSON.parse(result)
-      
       // console.log(hello);
       console.log( hello.data.user.id_user)
-      const IP = "http://192.168.250.221:3000"
+      const IP = "http://192.168.250.37:3000"
       axios.get(`${IP}/user/profileUser/${hello.data.user.id_user}`).then(({data})=>{
         console.log('data hamla',data)
         setdata(data[0])
@@ -135,16 +118,13 @@ export default function ProfileScreen1() {
       }).catch((err)=>{
         console.log(err)
       })
-    
         // console.log(setdata);
       }).catch((err)=>{
         console.log(err)
       })
-    })} 
+    })}
     get()
   },[])
- 
-
   if (!loaded) {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -152,7 +132,6 @@ export default function ProfileScreen1() {
       </View>
     );
   }
-
   return (
     <View style={{ flex: 1, backgroundColor: '#fff' }}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -178,10 +157,7 @@ export default function ProfileScreen1() {
               {/* Profile Name and Bio */}
               <View style={styles.nameAndBioView}>
                 <Text style={styles.userFullName}>{data.userName}</Text>
-                
               </View>
-             
-             
             </View>
             {/* Profile Content */}
             <View style={{ marginTop: 20 }}>
@@ -195,7 +171,6 @@ export default function ProfileScreen1() {
                 >
                   <Text style={styles.showContentButtonText}>INFOS</Text>
                 </TouchableOpacity>
- 
               </View>
               {showContent === 'Photos' ? (
                 <Photos photos={new Array(13).fill(1)} />
@@ -207,4 +182,3 @@ export default function ProfileScreen1() {
     </View>
   );
 }
-

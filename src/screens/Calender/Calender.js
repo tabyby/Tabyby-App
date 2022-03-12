@@ -22,7 +22,7 @@ export default class App extends Component {
   }
   render() {
     const { selectedStartDate } = this.state;
-    const startDate = selectedStartDate ? selectedStartDate.toString() : '';
+    const startDate = selectedStartDate ? JSON.stringify(selectedStartDate).substring(1,11) : '';
     return (
       <View style={styles.container}>
         <CalendarPicker
