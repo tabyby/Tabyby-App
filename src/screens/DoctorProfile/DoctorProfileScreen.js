@@ -53,11 +53,15 @@ export default function RecipeScreen(props) {
   return (
     <ScrollView style={styles.container}>
       <View style={styles.carouselContainer}>
+      <Image style={styles.imageContainer}  source={{
+          uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR00bEG-Dg_zwvNP2jW-MLoVUrngi8-jcv_Fg&usqp=CAU',
+        }}  />
         <View style={styles.carousel}>
         </View>
       </View>
       <View style={styles.infoRecipeContainer}>
-        <Text style={styles.infoRecipeName}>{item.title}</Text>
+
+        <Text style={styles.infoRecipeName}>{item.firstName} {item.lastName}</Text>
         <View style={styles.infoContainer}>
           <TouchableHighlight onPress={() => navigation.navigate("Appointement", { category, title })}>
             <Text style={styles.category}>{getCategoryName(item.categoryId).toUpperCase()}</Text>
@@ -73,9 +77,11 @@ export default function RecipeScreen(props) {
           />
         </View>
         <View style={styles.infoContainer}>
-          <Text style={styles.infoDescriptionRecipe}>{item.description}</Text>
+
+          <Text style={styles.userCard}>{item.description}</Text>
         </View>
       </View>
+
     </ScrollView>
   );
 }

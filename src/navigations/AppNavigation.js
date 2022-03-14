@@ -27,16 +27,17 @@ function MainNavigator() {
           textAlign: 'center',
           alignSelf: 'center',
           flex: 1,
+          color: '#fff'
         },
         headerStyle: {
-          backgroundColor: '#BCD2E8', 
+          backgroundColor: '#006480', 
        }
       }
     }
       
     >
-      {/* <Stack.Screen name='Login' component={LoginScreen} options={{headerShown:false}}  />
-      <Stack.Screen name='Signup' component={Signup} options={{headerShown:false}}  /> */}
+      <Stack.Screen name='Login' component={LoginScreen} options={{headerShown:false}}  />
+      <Stack.Screen name='Signup' component={Signup} options={{headerShown:false}}  />
       <Stack.Screen name='Home' component={HomeScreen} />
       <Stack.Screen name='Location' component={LocationScreen} />
       <Stack.Screen name='Categories' component={CategoriesScreen} />

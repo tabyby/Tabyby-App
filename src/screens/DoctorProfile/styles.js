@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
     width: viewportWidth,
     height: 250
   },
+  
   paginationContainer: {
     flex: 1,
     position: 'absolute',
@@ -54,6 +55,20 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-start',
+    marginLeft: 500,
+
+  },
+  userCard: {
+    backgroundColor: '#FAFAFA',
+    paddingVertical: 6,
+    paddingHorizontal: 6,
+    borderRadius: 10,
+    marginTop: 10,
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    fontSize:17,
+    color: '#26619c',
   },
   infoPhoto: {
     height: 20,

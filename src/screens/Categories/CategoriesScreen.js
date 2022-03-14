@@ -37,15 +37,13 @@ export default function HomeScreen(props) {
       <View style={styles.container}>
         <Image style={styles.photo} source={{ uri: item.profilePicture }} />
         <Text style={styles.title}>{item.firstName}</Text>
-        <Text style={styles.category}>{getCategoryName(item.categoryId)}</Text>
-        
+        {/* <Text style={styles.category}>{getCategoryName(item.categoryId)}</Text>.  */}
       </View>
     </TouchableHighlight>
   );
 
   return (
     <ScrollView style={styles.back}>
-
     <View>
         <FlatList vertical showsVerticalScrollIndicator={false} numColumns={2} data={doctor} renderItem={renderRecipes} keyExtractor={(item) => `${item.id}`} />
     </View>

@@ -1,6 +1,5 @@
 import { StyleSheet, Dimensions } from 'react-native';
 const { width: viewportWidth } = Dimensions.get('window');
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -14,7 +13,7 @@ const styles = StyleSheet.create({
   inputView: {
     flex: 1,
     height: 40,
-    backgroundColor: '#dfe4ea',
+    backgroundColor: '#DFE4EA',
     paddingHorizontal: 10,
     borderRadius: 6,
     display: 'flex',
@@ -27,7 +26,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   userCard: {
-    backgroundColor: '#fafafa',
+    backgroundColor: '#FAFAFA',
     paddingVertical: 6,
     paddingHorizontal: 6,
     borderRadius: 10,

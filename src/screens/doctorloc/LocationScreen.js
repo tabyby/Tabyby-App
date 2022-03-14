@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { Picker, Text, View, Button, ScrollView ,TouchableOpacity} from 'react-native'
 import styles from './styles'
-
 export default function Location({ navigation }) {
     const [selectedCountry, setSelectedCountry] = useState("tunis")
     const [country] = useState(
@@ -11,8 +10,6 @@ export default function Location({ navigation }) {
     const presslogin = () => {
         navigation.navigate('Categories')
     }
-
-
     return (
         <ScrollView style={styles.container}>
             {/* <View style={styles.userCardRight} >
@@ -22,24 +19,19 @@ export default function Location({ navigation }) {
                 key={i}  >{elem}
                   </Text>
                 ))}
-            
-
+           
                   </View> */}
-                  <Text>chose your location</Text>
+                  <Text style={{fontSize:18, color: '#22619c'}}>Choose your location:</Text>
                   {country.map((elem,i)=>(
                   <TouchableOpacity
                 style={styles.userCard}
                onPress={presslogin}
               >
-                  
                   <View style={styles.userCardRight} key={i}>
                   <Text
                     style={{ fontSize: 18, fontWeight: '500' }}
                   >{elem}</Text>
-                  
                 </View>
-                
-                
               </TouchableOpacity>))}
             {/* <Picker
                 style={{ marginVertical: 10 }}
@@ -51,5 +43,4 @@ export default function Location({ navigation }) {
             </Picker> */}
         </ScrollView>
     )
-
 }
