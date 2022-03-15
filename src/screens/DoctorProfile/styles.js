@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
     width: viewportWidth,
     height: 250
   },
+
   
   paginationContainer: {
     flex: 1,

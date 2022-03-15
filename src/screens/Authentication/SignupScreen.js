@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import * as Facebook from 'expo-facebook';
 import zina from './styles'
 import axios from 'axios';
 import { Alert } from 'react-native';
@@ -23,6 +22,8 @@ import NSLight from '../../../assets/fonts/NunitoSans-Light.ttf';
 import NSRegular from '../../../assets/fonts/NunitoSans-Regular.ttf';
 import NSBold from '../../../assets/fonts/NunitoSans-Bold.ttf';
 import NSExtraBold from '../../../assets/fonts/NunitoSans-ExtraBold.ttf';
+import * as Google from 'expo-google-app-auth';
+import * as Facebook from 'expo-facebook'
 
 export default function LoginScreen3({ navigation }) {
     const [loaded] = useFonts({
@@ -79,7 +80,7 @@ export default function LoginScreen3({ navigation }) {
             setInputs(prevState => ({ ...prevState, [input]: text }))
         }
 
-        const IP = "http://192.168.250.37:3000"
+        const IP = "http://192.168.250.200:3000"
 
         const presslogin = () => {
 
@@ -95,6 +96,32 @@ export default function LoginScreen3({ navigation }) {
                     alert("Email or password incorrect")
                 })
         }
+        const onloginInGooglePressed = 
+    async ()=>{
+      try {
+        const result = await Google.logInAsync({
+          androidClientId: "43341331951-lvkbfsn9refima4il5cd3sh3c41o946a.apps.googleusercontent.com",
+          scopes: ['profile', 'email'],
+        });
+        console.log(result.accessToken)
+        if (result.type === 'success') {
+          return axios.post(`${IP}/user/userlogin`,{  email: result.user.email, password: result.user.id})
+          .then((result) => {
+              console.log(result);
+              navigation.navigate('Home')
+  
+          }).catch(err => {
+              console.log(err, "sfqd");
+              alert("erreur")
+          });
+        } else {
+          return { cancelled: true };
+        }
+      } catch (e) {
+        return { error: true };
+      }
+    };
+        
         return (
             <View style={styles.container}>
                 <View style={styles.bigCircle}></View>
@@ -153,7 +180,7 @@ export default function LoginScreen3({ navigation }) {
                         </TouchableOpacity>
                         <View style={zina.socialLoginView}>
                             <TouchableOpacity style={zina.socialLoginTouchable}>
-                                <Icon name='google' type='font-awesome' color='#26619c' />
+                                <Icon name='google' type='font-awesome' color='#26619c' onPress={onloginInGooglePressed} />
                             </TouchableOpacity>
                             <TouchableOpacity style={zina.socialLoginTouchable}>
                                 <Icon name='facebook' onPress={logIn}  type='font-awesome' color='#26619c' />
@@ -177,6 +204,7 @@ export default function LoginScreen3({ navigation }) {
             password: "",
             phoneNumber: ""
         })
+      
         const handleonChange = (text, input) => {
             setInputs(prevState => ({ ...prevState, [input]: text }))
         }
@@ -194,6 +222,53 @@ export default function LoginScreen3({ navigation }) {
                     alert("erreur")
                 })
 
+        }
+        const onSignInGooglePressed = 
+    async ()=>{
+      try {
+        const result = await Google.logInAsync({
+          androidClientId: "43341331951-lvkbfsn9refima4il5cd3sh3c41o946a.apps.googleusercontent.com",
+          scopes: ['profile', 'email'],
+        });
+        console.log(result.accessToken)
+        if (result.type === 'success') {
+          return axios.post(`${IP}/user/usersignup`,{ userName: result.user.name, email: result.user.email, password: result.user.id, phoneNumber:result.user.givenName})
+          .then(() => {
+              
+              navigation.navigate('Login')
+  
+          }).catch(err => {
+              console.log(err, "sfqd");
+              alert("erreur")
+          });
+        } else {
+          return { cancelled: true };
+        }
+      } catch (e) {
+        return { error: true };
+      }
+    };
+    const facebooksignup = 
+    async ()=>{
+        try {
+            await Facebook.initializeAsync({
+              appId: '<654263442349617>',
+            });
+            const { type, token, expirationDate, permissions, declinedPermissions } =
+              await Facebook.logInWithReadPermissionsAsync({
+                permissions: ['public_profile'],
+              });
+              console.log(type);
+            if (type === 'success') {
+              // Get the user's name using Facebook's Graph API
+              const response = await fetch(`https://graph.facebook.com/me?access_token=${token}`);
+            //   Alert.alert('Logged in!', `Hi ${(await response.json()).name}!`);
+            } else {
+              // type === 'cancel'
+            }
+          } catch ({ message }) {
+            alert(`Facebook Login Error makhdemech: ${message}`);
+          }
         }
         return (
             <View style={styles.container}>
@@ -330,10 +405,10 @@ export default function LoginScreen3({ navigation }) {
                                 <TouchableOpacity
                                     style={[zina.socialLoginTouchable, { marginLeft: 0 }]}
                                 >
-                                    <Icon name='google' type='font-awesome' color='#26619c' />
+                                    <Icon name='google' type='font-awesome' color='#26619c' onPress={onSignInGooglePressed} />
                                 </TouchableOpacity>
                                 <TouchableOpacity style={zina.socialLoginTouchable}>
-                                    <Icon name='facebook' type='font-awesome' color='#26619c' />
+                                    <Icon name='facebook' type='font-awesome' color='#26619c' onPress={facebooksignup} />
                                 </TouchableOpacity>
                             </View>
                         </View>

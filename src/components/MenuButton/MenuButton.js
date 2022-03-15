@@ -19,5 +19,6 @@ export default function MenuButton(props) {
 MenuButton.propTypes = {
   onPress: PropTypes.func,
   source: PropTypes.number,
-  title: PropTypes.string,
+  title: PropTypes
+  .string,
 };

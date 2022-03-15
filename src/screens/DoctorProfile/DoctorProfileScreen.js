@@ -7,6 +7,7 @@ import {doctor} from "../Categories/CategoriesScreen"
 import BackButton from "../../components/BackButton/BackButton";
 import ViewIngredientsButton from "../../components/ViewIngredientsButton/ViewIngredientsButton";
 import Calendar from '../Calender/Calender'
+import { Icon } from 'react-native-elements';
 
 
 const { width: viewportWidth } = Dimensions.get("window");
@@ -54,7 +55,7 @@ export default function RecipeScreen(props) {
     <ScrollView style={styles.container}>
       <View style={styles.carouselContainer}>
       <Image style={styles.imageContainer}  source={{
-          uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR00bEG-Dg_zwvNP2jW-MLoVUrngi8-jcv_Fg&usqp=CAU',
+          uri: item.profilePicture,
         }}  />
         <View style={styles.carousel}>
         </View>
@@ -76,9 +77,36 @@ export default function RecipeScreen(props) {
             }}
           />
         </View>
+        
         <View style={styles.infoContainer}>
-
+            <Icon 
+             style={{ paddingHorizontal: 4, width: 30 }}
+             name='university'
+             type='font-awesome-5'
+             color='#26619c'
+             size={22}
+             />
           <Text style={styles.userCard}>{item.description}</Text>
+        </View>
+        <View >
+            <Icon 
+             style={{ paddingHorizontal: 4, width: 30 }}
+             name='calendar'
+             type='font-awesome-5'
+             color='#26619c'
+             size={22}
+             />
+          <Text style={styles.userCard}>{item.description}</Text>
+        </View>
+        <View >
+            <Icon 
+             style={{ paddingHorizontal: 4, width: 30 }}
+             name='business-time'
+             type='font-awesome-5'
+             color='#26619c'
+             size={22}
+             />
+          <Text style={styles.userCard}>4 years</Text>
         </View>
       </View>
 
