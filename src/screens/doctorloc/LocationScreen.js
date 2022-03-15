@@ -26,6 +26,7 @@ export default function Location({ navigation }) {
                   <TouchableOpacity
                 style={styles.userCard}
                onPress={presslogin}
+               key={i}
               >
                   <View style={styles.userCardRight} key={i}>
                   <Text

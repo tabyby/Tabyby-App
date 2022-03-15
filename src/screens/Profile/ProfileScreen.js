@@ -25,9 +25,9 @@ function Photos({ photos }) {
     const get = async () => {
       await AsyncStorage.getItem("response").then((result) => {
         var hello = JSON.parse(result)
-        // console.log(hello);
+        console.log(hello);
         console.log(hello.data.user.id_user)
-        const IP = "http://192.168.250.37:3000"
+        const IP = "http://192.168.250.221:3000"
         axios.get(`${IP}/user/profileUser/${hello.data.user.id_user}`).then(({ data }) => {
           console.log('data hamla', data)
           setdata(data[0])
@@ -105,6 +105,7 @@ function Photos({ photos }) {
 
 }
 export default function ProfileScreen1() {
+  
   const [loaded] = useFonts({
     SSLight,
     SSRegular,
@@ -117,9 +118,9 @@ export default function ProfileScreen1() {
     const get = async () => {
       await AsyncStorage.getItem("response").then((result) => {
         var hello = JSON.parse(result)
-        // console.log(hello);
+        console.log(hello);
         console.log(hello.data.user.id_user)
-        const IP = "http://192.168.250.37:3000"
+        const IP = "http://192.168.250.221:3000"
         axios.get(`${IP}/user/profileUser/${hello.data.user.id_user}`).then(({ data }) => {
           console.log('data hamla', data)
           setdata(data[0])
