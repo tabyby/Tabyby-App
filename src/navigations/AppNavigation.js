@@ -15,6 +15,8 @@ import Signup from '../screens/Authentication/SignupScreen'
 import IngredientsDetailsScreen from '../screens/DoctorDetails/DoctorDetailsScreen';
 import Appointement from '../screens/Appointement/Appointement'
 import Blogs from '../screens/Blogs/Blogs'
+import Localisation from '../screens/Localisation'
+
 
 const Stack = createStackNavigator();
 
@@ -40,6 +42,7 @@ function MainNavigator() {
        <Stack.Screen name='Login' component={LoginScreen} options={{headerShown:false}}  />
       <Stack.Screen name='Signup' component={Signup} options={{headerShown:false}}  /> 
       <Stack.Screen name='Home' component={HomeScreen} />
+      <Stack.Screen name='Localisation' component={Localisation} />
       <Stack.Screen name='Location' component={LocationScreen} />
       <Stack.Screen name='Categories' component={CategoriesScreen} />
       <Stack.Screen name='Doctor profile' component={RecipeScreen} />
