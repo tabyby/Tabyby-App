@@ -43,6 +43,18 @@ const styles = StyleSheet.create({
     borderWidth: 0.5,
     borderRadius: 20,
   },
+  TitleText: {
+    fontSize: 20,
+    color: "#26619c",
+    fontWeight: 'bold',
+    marginTop: 10,
+  },
+  hr: {
+    width: '100%',
+    height: 0.2,
+    backgroundColor: '#26619c',
+    marginTop: 6,
+  },
   categoriesPhoto: {
     width: '100%',
     height: 155,
