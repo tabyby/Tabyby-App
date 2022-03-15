@@ -44,7 +44,6 @@ export default function HomeScreen(props) {
 
   return (
     <ScrollView style={styles.back}>
-
     <View>
         <FlatList vertical showsVerticalScrollIndicator={false} numColumns={2} data={doctor} renderItem={renderRecipes} keyExtractor={(item) => `${item.id}`} />
     </View>
