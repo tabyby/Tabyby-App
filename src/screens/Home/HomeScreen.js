@@ -1,14 +1,22 @@
-import React, { useLayoutEffect } from "react";
+import React, { useLayoutEffect,useEffect,useState } from "react";
 import { ScrollView, FlatList, Text, View, Image, TouchableHighlight } from "react-native";
 import styles from "./styles";
 import { categories } from "../../data/dataArrays";
-import { getNumberOfRecipes } from "../../data/MockDataAPI";
 import MenuImage from "../../components/MenuImage/MenuImage";
 import Blogs from '../Blogs/Blogs'
-import axios from "axios";
+import axios from 'axios'
 
 export default function CategoriesScreen(props) {
   const { navigation } = props;
+  const [blogs, setblogs] = useState([]);
+
+  useEffect(() => {
+    var ip= "http://192.168.250.37:3000"
+  axios.get(`${ip}/doctor/api/selectBlogs`).then(res=>{
+   setblogs(res.data)
+   console.log(res.data);
+  }).catch(err=>{console.log(err);})
+  },[])
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -16,6 +24,7 @@ export default function CategoriesScreen(props) {
         fontWeight: "bold",
         textAlign: "center",
         alignSelf: "center",
+        color: 'white',
         flex: 1,
       },
       headerLeft: () => (
@@ -29,81 +38,42 @@ export default function CategoriesScreen(props) {
     });
   }, []);
 
-  const onPressCategory = (item) => {
-    const IP = "http://192.168.1.23:3000"
-    axios.get(`${IP}/user/doctor`).then(({data})=>{
-      // console.log(data)
-      if(item===data[0].field){
-        console.log(item);
-        console.log(data.field);
-  navigation.navigate("Location",{item})
-      }
-    }).catch(err=>{
-      console.log(err);
-    })
-
-   
+  const onPressCategory = () => {
+    navigation.navigate("Location");
   };
-  
-  
+
+  const onPressBlogs = () => {
+    navigation.navigate("Blogs");
+  };
+
+  const renderBlogs = ({ item })=>(
+    <TouchableHighlight underlayColor="#fff" onPress={()=> onPressBlogs()}>
+        <View style={styles.categoriesItemContainer}>
+          <Image style={styles.categoriesPhoto} source={{uri: item.img }} />
+          <Text style={styles.categoriesName}></Text>
+          <Text style={styles.categoriesInfo}>{item.title}</Text>
+          {/* <Text>By doctor Mortadha</Text> */}
+        </View>
+      </TouchableHighlight>
+  );
+
   const renderCategory = ({ item }) => (
     <TouchableHighlight underlayColor="#fff" onPress={() => onPressCategory(item)}>
       <View style={styles.container}>
         <Image style={styles.photo} source={{ uri: item.photo_url }} />
         <Text style={styles.title}>{item.name}</Text>
-        {/* <Text style={styles.category}>{getNumberOfRecipes(item.id)} doctors</Text> */}
       </View>
     </TouchableHighlight>
-    
   );
- 
-
-  // const renderAdds =()=>{
-  //   <TouchableHighlight underlayColor="rgba(73,182,77,0.9)">
-  //   <View style={styles.categoriesItemContainer}>
-  //     <Image style={styles.categoriesPhoto}  source={{ uri: item.photo_url }} />
-  //     <Text style={styles.categoriesName}>fddfd</Text>
-  //     <Text style={styles.categoriesInfo}>yoooo</Text>
-  //   </View>
-  // </TouchableHighlight>
-  // }
 
   return (
     <ScrollView>
       <View>
-      {/* <FlatList vertical showsVerticalScrollIndicator={false} numColumns={6} renderItem={renderAdds} /> */}
-      <FlatList vertical showsVerticalScrollIndicator={false} numColumns={6} data={categories} renderItem={renderCategory} keyExtractor={(item) => `${item.id}`} />
+        <Text style={styles.TitleText}>   Speciality</Text>
+        <FlatList horizontal showsVerticalScrollIndicator={false} data={categories} renderItem={renderCategory} keyExtractor={(item) => `${item.id}`} />
+        <Text style={styles.TitleText}>   Blogs</Text>
+        <FlatList vertical showsVerticalScrollIndicator={false} numColumns={1} data={blogs} renderItem={renderBlogs} keyExtractor={(item) => `${item.id_blog}`} />
       </View>
-      <TouchableHighlight underlayColor="rgba(73,182,77,0.9)">
-      <View style={styles.categoriesItemContainer}>
-        <Image style={styles.categoriesPhoto}  source={{
-          uri: 'https://fscluster.org/sites/default/files/styles/core-group-featured-image/public/banner-696x321.png?itok=l7uFday9',
-        }}  />
-        <Text style={styles.categoriesName}></Text>
-        <Text style={styles.categoriesInfo}>Covid-19: The end!</Text>
-        <Text>By doctor Mortadha</Text>
-      </View>
-    </TouchableHighlight>
-    <TouchableHighlight underlayColor="rgba(73,182,77,0.9)">
-      <View style={styles.categoriesItemContainer}>
-        <Image style={styles.categoriesPhoto}  source={{
-          uri: 'https://mi-hub.com/wp-content/uploads/2019/02/maintaining-a-healthy-lifestyle.jpeg',
-        }}  />
-        <Text style={styles.categoriesName}></Text>
-        <Text style={styles.categoriesInfo}>Be healthy!</Text>
-        <Text>By doctor Lotfi</Text>
-      </View>
-    </TouchableHighlight>
-    <TouchableHighlight underlayColor="rgba(73,182,77,0.9)">
-      <View style={styles.categoriesItemContainer}>
-        <Image style={styles.categoriesPhoto}  source={{
-          uri: 'https://img.passeportsante.net/1000x526/2020-01-07/i93183-.jpeg',
-        }}  />
-        <Text style={styles.categoriesName}></Text>
-        <Text style={styles.categoriesInfo}>Winter is coming: Are you ready?</Text>
-        <Text>By doctor Marwa</Text>
-      </View>
-    </TouchableHighlight>
     </ScrollView>
   );
 }

@@ -37,7 +37,7 @@ export default function HomeScreen(props) {
       <View style={styles.container}>
         <Image style={styles.photo} source={{ uri: item.profilePicture }} />
         <Text style={styles.title}>{item.firstName}</Text>
-        {/* <Text style={styles.category}>{getCategoryName(item.categoryId)}</Text>.  */}
+        <Text style={styles.category}>{getCategoryName(item.categoryId)}</Text>
       </View>
     </TouchableHighlight>
   );
