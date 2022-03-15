@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import * as Facebook from 'expo-facebook';
 import zina from './styles'
 import axios from 'axios';
+import { Alert } from 'react-native';
 import { ActivityIndicator, AsyncStorage } from 'react-native';
 import {
     StyleSheet,
@@ -43,6 +45,29 @@ export default function LoginScreen3({ navigation }) {
             setActiveTab('Login');
         }
     }
+
+    async function logIn() {
+        try {
+          await Facebook.initializeAsync({
+            appId: '654263442349617',
+          });
+          const { type, token, expirationDate, permissions, declinedPermissions } =
+            await Facebook.logInWithReadPermissionsAsync({
+              permissions: ['public_profile'],
+            });
+          if (type === 'success') {
+            // Get the user's name using Facebook's Graph API
+            const response = await fetch(`https://graph.facebook.com/me?access_token=${token}`);
+            Alert.alert('Logged in!', `Hi ${(await response.json()).name}!`);
+          } else {
+            // type === 'cancel'
+          }
+        } catch ({ message }) {
+          alert(`Facebook Login Error: ${message}`);
+        }
+      }
+    
+
 
     function Login() {
         const [showLoginPassword, setShowLoginPassword] = useState(false);
@@ -131,7 +156,7 @@ export default function LoginScreen3({ navigation }) {
                                 <Icon name='google' type='font-awesome' color='#26619c' />
                             </TouchableOpacity>
                             <TouchableOpacity style={zina.socialLoginTouchable}>
-                                <Icon name='facebook' type='font-awesome' color='#26619c' />
+                                <Icon name='facebook' onPress={logIn}  type='font-awesome' color='#26619c' />
                             </TouchableOpacity>
                         </View>
 
@@ -156,7 +181,7 @@ export default function LoginScreen3({ navigation }) {
             setInputs(prevState => ({ ...prevState, [input]: text }))
         }
 
-        const IP = "http://192.168.250.37:3000"
+        const IP = "http://192.168.250.200:3000"
         var pressSignup = () => {
             axios.post(`${IP}/user/usersignup`, { userName: inputs.userName, email: inputs.email, password: inputs.password, phoneNumber: inputs.phoneNumber })
                 .then(result => {
