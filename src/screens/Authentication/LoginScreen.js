@@ -21,6 +21,7 @@ import NSLight from '../../../assets/fonts/NunitoSans-Light.ttf';
 import NSRegular from '../../../assets/fonts/NunitoSans-Regular.ttf';
 import NSBold from '../../../assets/fonts/NunitoSans-Bold.ttf';
 import NSExtraBold from '../../../assets/fonts/NunitoSans-ExtraBold.ttf';
+import * as Google from 'expo-google-app-auth';
 
 export default function LoginScreen3({ navigation }) {
   
@@ -55,13 +56,14 @@ export default function LoginScreen3({ navigation }) {
       setInputs(prevState => ({ ...prevState, [input]: text }))
     }
 
-    const IP = "http://192.168.250.37:3000"
+    const IP = "http://192.168.250.221:3000"
 
     const presslogin = () => {
 
       axios.post(`${IP}/user/userlogin`,{email:inputs.email,password:inputs.password})
           .then(async result=>{
             console.log(result
+
               );
              await AsyncStorage.setItem("response",JSON.stringify(result))
                 navigation.navigate('Home')
@@ -70,6 +72,32 @@ export default function LoginScreen3({ navigation }) {
               alert("Please write your password")
             })
     }
+    const onloginInGooglePressed = 
+    async ()=>{
+      try {
+        const result = await Google.logInAsync({
+          androidClientId: "43341331951-lvkbfsn9refima4il5cd3sh3c41o946a.apps.googleusercontent.com",
+          scopes: ['profile', 'email'],
+        });
+        console.log(result.accessToken)
+        if (result.type === 'success') {
+          return axios.post(`${IP}/user/userlogin`,{  email: result.user.email, password: result.user.id})
+          .then(async (result) => {
+            await AsyncStorage.setItem("response",JSON.stringify(result))
+              navigation.navigate('Home')
+  
+          }).catch(err => {
+              console.log(err, "sfqd");
+              alert("erreur")
+          });
+        } else {
+          return { cancelled: true };
+        }
+      } catch (e) {
+        return { error: true };
+      }
+    };
+    
     return (
       <View style={styles.container}>
         <View style={styles.bigCircle}></View>
@@ -144,10 +172,10 @@ export default function LoginScreen3({ navigation }) {
             </TouchableOpacity>
             <View style={zina.socialLoginView}>
               <TouchableOpacity style={zina.socialLoginTouchable}>
-                <Icon name='google' type='font-awesome' color='#26619c' />
+                <Icon name='google' type='font-awesome' color='#26619c' onPress={onloginInGooglePressed} />
               </TouchableOpacity>
               <TouchableOpacity style={zina.socialLoginTouchable}>
-                <Icon name='facebook' type='font-awesome' color='#26619c' />
+                <Icon name='facebook' type='font-awesome' color='#26619c'  />
               </TouchableOpacity>
             </View>
           </View>
@@ -169,13 +197,13 @@ export default function LoginScreen3({ navigation }) {
       setInputs(prevState => ({ ...prevState, [input]: text }))
     }
 
-    const IP = "http://192.168.250.37:3000"
+    const IP = "http://192.168.250.221:3000"
     var pressSignup = () => {
       axios.post(`${IP}/user/usersignup`, { userName: inputs.userName, email: inputs.email, password: inputs.password, phoneNumber: inputs.phoneNumber })
         .then(result => {
           console.log(result
           );
-          navigation.navigate('Home')
+          navigation.navigate('Login')
 
         }).catch(err => {
           console.log(err, "sfqd");
@@ -183,6 +211,23 @@ export default function LoginScreen3({ navigation }) {
         })
 
     }
+    const onSignInGooglePressed = 
+    async ()=>{
+      try {
+        const result = await Google.logInAsync({
+          androidClientId: "43341331951-lvkbfsn9refima4il5cd3sh3c41o946a.apps.googleusercontent.com",
+          scopes: ['profile', 'email'],
+        });
+    console.log(result);
+        if (result.type === 'success') {
+          return result.accessToken;
+        } else {
+          return { cancelled: true };
+        }
+      } catch (e) {
+        return { error: true };
+      }
+    };
     return (
       <View style={{ marginTop: 10 }}>
         <View style={zina.inputView}>
@@ -304,7 +349,7 @@ export default function LoginScreen3({ navigation }) {
             <TouchableOpacity
               style={[zina.socialLoginTouchable, { marginLeft: 0 }]}
             >
-              <Icon name='google' type='font-awesome' color='#26619c' />
+              <Icon name='google' type='font-awesome' color='#26619c' onPress={onSignInGooglePressed} />
             </TouchableOpacity>
             <TouchableOpacity style={zina.socialLoginTouchable}>
               <Icon name='facebook' type='font-awesome' color='#26619c' />

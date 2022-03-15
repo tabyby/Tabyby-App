@@ -5,6 +5,7 @@ import { categories } from "../../data/dataArrays";
 import { getNumberOfRecipes } from "../../data/MockDataAPI";
 import MenuImage from "../../components/MenuImage/MenuImage";
 import Blogs from '../Blogs/Blogs'
+import axios from "axios";
 
 export default function CategoriesScreen(props) {
   const { navigation } = props;
@@ -28,13 +29,25 @@ export default function CategoriesScreen(props) {
     });
   }, []);
 
-  const onPressCategory = () => {
+  const onPressCategory = (item) => {
+    const IP = "http://192.168.1.23:3000"
+    axios.get(`${IP}/user/doctor`).then(({data})=>{
+      // console.log(data)
+      if(item===data[0].field){
+        console.log(item);
+        console.log(data.field);
+  navigation.navigate("Location",{item})
+      }
+    }).catch(err=>{
+      console.log(err);
+    })
 
-    navigation.navigate("Location");
+   
   };
   
+  
   const renderCategory = ({ item }) => (
-    <TouchableHighlight underlayColor="#fff" onPress={() => onPressCategory()}>
+    <TouchableHighlight underlayColor="#fff" onPress={() => onPressCategory(item)}>
       <View style={styles.container}>
         <Image style={styles.photo} source={{ uri: item.photo_url }} />
         <Text style={styles.title}>{item.name}</Text>
